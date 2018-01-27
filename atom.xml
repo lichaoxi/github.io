@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>AetherCloud</title>
+  <title>YitaiCloud</title>
   
-  <subtitle>探索区块连，研究以太坊</subtitle>
+  <subtitle>以太云</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tisonkong.github.io/github.io/"/>
@@ -10,7 +10,7 @@
   <id>https://tisonkong.github.io/github.io/</id>
   
   <author>
-    <name>TisonKong</name>
+    <name>Tison</name>
     
   </author>
   
