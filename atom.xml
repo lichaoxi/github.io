@@ -3,11 +3,11 @@
   <title>AetherCloud</title>
   
   <subtitle>探索区块连，研究以太坊</subtitle>
-  <link href="/github.io/atom.xml" rel="self"/>
+  <link href="/./atom.xml" rel="self"/>
   
-  <link href="https://tisonkong.github.io/github.io/"/>
+  <link href="http://yitaicloud.com/./"/>
   <updated>2018-01-27T11:06:48.962Z</updated>
-  <id>https://tisonkong.github.io/github.io/</id>
+  <id>http://yitaicloud.com/./</id>
   
   <author>
     <name>TisonKong</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://tisonkong.github.io/github.io/2018/01/27/hello-world/"/>
-    <id>https://tisonkong.github.io/github.io/2018/01/27/hello-world/</id>
+    <link href="http://yitaicloud.com/./2018/01/27/hello-world/"/>
+    <id>http://yitaicloud.com/./2018/01/27/hello-world/</id>
     <published>2018-01-27T11:06:48.962Z</published>
     <updated>2018-01-27T11:06:48.962Z</updated>
     
@@ -32,10 +32,10 @@
     
     </summary>
     
-      <category term="Test" scheme="https://tisonkong.github.io/github.io/categories/Test/"/>
+      <category term="Test" scheme="http://yitaicloud.com/./categories/Test/"/>
     
     
-      <category term="Test" scheme="https://tisonkong.github.io/github.io/tags/Test/"/>
+      <category term="Test" scheme="http://yitaicloud.com/./tags/Test/"/>
     
   </entry>
   
