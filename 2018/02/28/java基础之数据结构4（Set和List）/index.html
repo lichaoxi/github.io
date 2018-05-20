@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a1c27c4a"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/iCloud.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Interview,java,数据结构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YitaiCloud" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、Set1.Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 == 还是 equals()？ 它们有何区别?">
+<meta name="keywords" content="Interview,java,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解Java中的Set和List">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/02/28/java基础之数据结构4（Set和List）/index.html">
+<meta property="og:site_name" content="YitaiCloud">
+<meta property="og:description" content="一、Set1.Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 == 还是 equals()？ 它们有何区别?">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-28T01:40:21.412Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解Java中的Set和List">
+<meta name="twitter:description" content="一、Set1.Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 == 还是 equals()？ 它们有何区别?">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/02/28/java基础之数据结构4（Set和List）/"/>
+
+
+
+
+
+  <title>详解Java中的Set和List | YitaiCloud</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/tisonkong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YitaiCloud</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以太云</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/02/28/java基础之数据结构4（Set和List）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tison">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cloud.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YitaiCloud">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">详解Java中的Set和List</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T09:40:21+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-Basic/" itemprop="url" rel="index">
+                    <span itemprop="name">Java Basic</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,051
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、Set"><a href="#一、Set" class="headerlink" title="一、Set"></a>一、Set</h4><h5 id="1-Set-里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用-还是-equals-？-它们有何区别"><a href="#1-Set-里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用-还是-equals-？-它们有何区别" class="headerlink" title="1.Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 == 还是 equals()？ 它们有何区别?"></a>1.Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 == 还是 equals()？ 它们有何区别?</h5><a id="more"></a>
+<ul>
+<li>如果<code>hash</code>码值不相同，说明是一个新元素，存；<br>如果没有元素和传入对象（也就是<code>add</code>的元素）的<code>hash</code>值相等，那么就认为这个元素在<code>table</code>中不存在，将其添加进<code>table</code>；</li>
+<li>如果<code>hash</code>码值相同，且<code>equles</code>判断相等，说明元素已经存在，不存；如果<code>hash</code>码值相同，且<code>equles</code>判断不相等，说明元素不存在，存；</li>
+</ul>
+<p>java中的数据类型，可分为两类：<br><strong>1.基本数据类型</strong><br>也称原始数据类型。<strong>byte,short,char,int,long,float,double,boolean</strong>,他们之间的比较，应用双等号（==），比较的是他们的值。基本数据类型没有equals方法哦。<br><strong>2.复合数据类型(类)</strong><br>当他们用（==）进行比较的时候，比较的是他们在内存中的存放地址，所以，除非是同一个<code>new</code>出来的对象，他们的比较后的结果为<code>true</code>，否则比较后结果为<code>false</code>。 JAVA当中所有的类都是继承于<code>Object</code>这个基类的，在<code>Object</code>中的基类中定义了一个<code>equals</code>的方法，这个方法的初始行为是比较对象的内存地址，但在一些类库当中这个方法被覆盖掉了，如<code>String,Integer,Date</code>在这些类当中<code>equals</code>有其自身的实现，而不再是比较类在堆内存中的存放地址了。<br>  对于复合数据类型之间进行<code>equals</code>比较，在没有覆写<code>equals</code>方法的情况下，他们之间的比较还是基于他们在内存中的存放位置的地址值的，因为<code>Object</code>的<code>equals</code>方法也是用双等号（==）进行比较的，所以比较后的结果跟双等号（==）的结果相同。</p>
+<h5 id="2-TreeMap：TreeMap-是采用什么树实现的？TreeMap、HashMap、LindedHashMap的区别。"><a href="#2-TreeMap：TreeMap-是采用什么树实现的？TreeMap、HashMap、LindedHashMap的区别。" class="headerlink" title="2.TreeMap：TreeMap 是采用什么树实现的？TreeMap、HashMap、LindedHashMap的区别。"></a>2.TreeMap：TreeMap 是采用什么树实现的？TreeMap、HashMap、LindedHashMap的区别。</h5><p>TreeMap 是一个有序的<strong>key-value</strong>集合，它是通过<a href="http://www.cnblogs.com/skywang12345/p/3245399.html" target="_blank" rel="noopener">红黑树</a>实现的。  TreeMap 继承于<strong>AbstractMap</strong>，所以它是一个Map，即一个key-value集合。TreeMap 实现了NavigableMap接口，意味着它<strong>支持一系列的导航方法。</strong>比如返回有序的key集合。TreeMap 实现了Cloneable接口，意味着<strong>它能被克隆</strong>。  TreeMap 实现了java.io.Serializable接口，意味着<strong>它支持序列化</strong>。<br>TreeMap基于<strong>红黑树</strong>（Red-Black tree）实现。该映射根据<strong>其键的自然顺序进行排序</strong>，或者根据<strong>创建映射时提供的</strong> <strong>Comparator</strong> <strong>进行排序</strong>，具体取决于使用的构造方法。  TreeMap的基本操作 containsKey、get、put 和 remove 的时间复杂度是 log(n) 。  另外，TreeMap是<strong>非同步</strong>的。  它的iterator 方法返回的<strong>迭代器是fail-fastl</strong>的。</p>
+<h5 id="3-TreeMap和TreeSet在排序时如何比较元素？Collections工具类中的sort-方法如何比较元素？"><a href="#3-TreeMap和TreeSet在排序时如何比较元素？Collections工具类中的sort-方法如何比较元素？" class="headerlink" title="3.TreeMap和TreeSet在排序时如何比较元素？Collections工具类中的sort()方法如何比较元素？"></a>3.TreeMap和TreeSet在排序时如何比较元素？Collections工具类中的sort()方法如何比较元素？</h5><p><strong>TreeSet</strong>要求存放的对象所属的类必须实现<code>Comparable</code>接口，该接口提供了比较元素的<code>compareTo()</code>方法，当插入元素时会回调该方法比较元素的大小。<code>TreeMap</code>要求存放的键值对映射的键必须实现<code>Comparable</code>接口从而根据键对元素进行排序。<code>Collections</code>工具类的<code>sort</code>方法有两种重载的形式，第一种要求传入的待排序容器中存放的对象必须实现<code>Comparable</code>接口以实现元素的比较；第二种不强制性的要求容器中的元素必须可比较，但是要求传入第二个参数，参数是<code>Comparator</code>接口的子类型（需要重写<code>compare</code>方法实现元素的比较），相当于一个临时定义的排序规则，其实就是通过接口注入比较元素大小的算法，也是对回调模式的应用（Java中对函数式编程的支持）。</p>
+<h5 id="3-TreeSet：一个已经构建好的-TreeSet，怎么完成倒排序。"><a href="#3-TreeSet：一个已经构建好的-TreeSet，怎么完成倒排序。" class="headerlink" title="3.TreeSet：一个已经构建好的 TreeSet，怎么完成倒排序。"></a>3.TreeSet：一个已经构建好的 TreeSet，怎么完成倒排序。</h5><p><strong>1、自然顺序</strong><br>即类要实现<code>Comparable</code>接口，并重写<code>compareTo()</code>方法，<code>TreeSet</code>对象调用<code>add()</code>方法时，会将存入的对象提升为<code>Comparable</code>类型，然后调用对象中的<code>compareTo()</code>方法进行比较，根据比较的返回值进行存储。<br>因为<code>TreeSet</code>底层是二叉树，当<code>compareTo</code>方法返回<code>0</code>时，不存储；当<code>compareTo</code>方法返回正数时，存入二叉树的右子树；当<code>compareTo</code>方法返回负数时，存入二叉树的左子树。如果一个类没有实现<code>Comparable</code>接口就将该类对象存入<code>TreeSet</code>集合，会发生类型转换异常。<br><strong>2、比较器顺序Comparator</strong><br>创建<code>TreeSet</code>对象的时候可以指定一个比较器，即传入一个<code>Comparator</code>对象，那么<code>TreeSet</code>会优先按照<code>Comparator</code>中的<code>compare()</code>方法排序，<code>compare</code>方法中有两个参数，第一个是调用该方法的对象，第二个值集合中已经存入的对象。</p>
+<h5 id="4-EnumSet-是什么"><a href="#4-EnumSet-是什么" class="headerlink" title="4.EnumSet 是什么"></a>4.EnumSet 是什么</h5><h5 id="5-HashSet和TreeSet有什么区别"><a href="#5-HashSet和TreeSet有什么区别" class="headerlink" title="5.HashSet和TreeSet有什么区别?"></a>5.HashSet和TreeSet有什么区别?</h5><ul>
+<li>底层存储的数据结构不同<br><code>HashSet</code>底层用的是<code>HashMap</code>哈希表结构存储，而<code>TreeSet</code>底层用的是<code>TreeMap</code>树结构存储</li>
+<li>存储时保证数据唯一性依据不同<br><code>HashSet</code>是通过复写<code>hashCode()</code>方法和<code>equals()</code>方法来保证的，而<code>HashSet</code>通过<code>Compareable</code>接口的<code>compareTo()</code>方法来保证的</li>
+<li>有序性不一样<br><code>HashSet</code>无序，<code>TreeSet</code>有序<h5 id="6-HashSet-内部是如何工作的"><a href="#6-HashSet-内部是如何工作的" class="headerlink" title="6.HashSet 内部是如何工作的"></a>6.HashSet 内部是如何工作的</h5><code>HashSet</code>:底层数据结构是哈希表，本质就是对哈希值的存储，通过判断元素的<code>hashCode</code>方法和<code>equals</code>方法来保证元素的唯一性，当<code>hashCode</code>值不相同，就直接存储了，不用在判断<code>equals</code>了，当<code>hashCode</code>值相同时，会在判断一次<code>euqals</code>方法的返回值是否为<code>true</code>，如果为<code>true</code>则视为用一个元素，不用存储，如果为<code>false</code>，这些相同哈希值不同内容的元素都存放一个<code>bucket</code>桶里（当哈希表中有一个桶结构，每一个桶都有一个哈希值）<br><code>TreeSet</code>:底层的数据结构是二叉树，可以对<code>Set</code>集合中的元素进行排序,这种结构，可以提高排序性能, 根据比较方法的返回值确定的,只要返回的是0.就代表元素重复</li>
+</ul>
+<h5 id="7-WeakHashMap-是怎么工作的？"><a href="#7-WeakHashMap-是怎么工作的？" class="headerlink" title="7.WeakHashMap 是怎么工作的？"></a>7.WeakHashMap 是怎么工作的？</h5><h4 id="二、-List"><a href="#二、-List" class="headerlink" title="二、 List"></a>二、 List</h4><h5 id="1-List-Set-Map三个接口，存取元素时各有什么特点？"><a href="#1-List-Set-Map三个接口，存取元素时各有什么特点？" class="headerlink" title="1.List, Set, Map三个接口，存取元素时各有什么特点？"></a>1.List, Set, Map三个接口，存取元素时各有什么特点？</h5><p><code>List</code>与<code>Set</code>都是单列元素的集合，它们有一个功共同的父接口<code>Collection</code>。<br><strong>Set</strong>里面不允许有重复的元素，<br>存元素：<code>add</code>方法有一个<code>boolean</code>的返回值，当集合中没有某个元素，此时<code>add</code>方法可成功加入该元素时，则返回<code>true</code>；当集合含有与某个元素<code>equals</code>相等的元素时，此时<code>add</code>方法无法加入该元素，返回结果为<code>false</code>。<br>取元素：没法说取第几个，只能以<code>Iterator</code>接口取得所有的元素，再逐一遍历各个元素。</p>
+<p><strong>List</strong>表示有先后顺序的集合，<br>存元素：多次调用<code>add(Object)</code>方法时，每次加入的对象按先来后到的顺序排序，也可以插队，即调用<code>add(int index,Object)</code>方法，就可以指定当前对象在集合中的存放位置。<br>取元素：<br>方法1：<code>Iterator</code>接口取得所有，逐一遍历各个元素<br>方法2：调用<code>get(index i)</code>来明确说明取第几个。使用此接口能够精确的控制每个元素插入的位置。用户能够使用索引（元素在<code>List</code>中的位置，类似于数组下标）来访问<code>List</code>中的元素，这类似于Java的数组。</p>
+<p><strong>Map</strong>是双列的集合，存放用<code>put</code>方法:<code>put(obj key,obj value)</code>，每次存储时，要存储一对<code>key/value</code>，不能存储重复的<code>key</code>，这个重复的规则也是按equals比较相等。<br>取元素：用<code>get(Object key)</code>方法根据<code>key</code>获得相应的<code>value</code>。<br>也可以获得所有的<code>key</code>的集合，还可以获得所有的<code>value</code>的集合，<br>还可以获得<code>key</code>和<code>value</code>组合成的<code>Map.Entry</code>对象的集合。</p>
+<p><strong>List</strong>以特定次序来持有元素，可有重复元素。<code>Set</code>无法拥有重复元素,内部排序。<code>Map</code> 保存<code>key-value</code>值，<code>value</code>可多值。</p>
+<h5 id="2-List-Set-Map-是否继承自-Collection-接口"><a href="#2-List-Set-Map-是否继承自-Collection-接口" class="headerlink" title="2.List, Set, Map 是否继承自 Collection 接口"></a>2.List, Set, Map 是否继承自 Collection 接口</h5><p><code>List</code>和<code>Set</code>是的，而<code>Map</code>不是。</p>
+<h5 id="3-遍历一个-List-有哪些不同的方式"><a href="#3-遍历一个-List-有哪些不同的方式" class="headerlink" title="3.遍历一个 List 有哪些不同的方式"></a>3.遍历一个 List 有哪些不同的方式</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Iterator it1 = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(it1.hasNext())&#123;</span><br><span class="line">    System.out.println(it1.next());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法2</span></span><br><span class="line"><span class="keyword">for</span>(Iterator it2 = list.iterator();it2.hasNext();)&#123;</span><br><span class="line">     System.out.println(it2.next());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法3</span></span><br><span class="line"><span class="keyword">for</span>(String tmp:list)&#123;</span><br><span class="line">    System.out.println(tmp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法4</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; list.size(); i ++)&#123;</span><br><span class="line">    System.out.println(list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三、LinkedList"><a href="#三、LinkedList" class="headerlink" title="三、LinkedList"></a>三、LinkedList</h4><h5 id="1-LinkedList-是单向链表还是双向链表"><a href="#1-LinkedList-是单向链表还是双向链表" class="headerlink" title="1.LinkedList 是单向链表还是双向链表"></a>1.LinkedList 是单向链表还是双向链表</h5><p><strong>Linkedlist</strong>，双向链表，优点，增加删除，用时间很短，但是因为没有索引，对索引的操作，比较麻烦，只能循环遍历，但是每次循环的时候，都会先判断一下，这个索引位于链表的前部分还是后部分，每次都会遍历链表的一半 ，而不是全部遍历。<br>双向链表，都有一个<code>previous</code>和<code>next</code>， 链表最开始的部分都有一个<code>fiest</code>和<code>last</code>指向第一个元素，和最后一个元素。增加和删除的时候，只需要更改一个<code>previous</code>和<code>next</code>，就可以实现增加和删除，所以说，<code>LinkedList</code>对于数据的删除和增加相当的方便。</p>
+<h5 id="2-LinkedList-与-ArrayList-有什么区别"><a href="#2-LinkedList-与-ArrayList-有什么区别" class="headerlink" title="2.LinkedList 与 ArrayList 有什么区别?"></a>2.LinkedList 与 ArrayList 有什么区别?</h5><ul>
+<li>因为<code>Array</code>是基于索引<code>(index)</code>的数据结构，它使用索引在数组中搜索和读取数据是很快的。<code>Array</code>获取数据的时间复杂度是<code>O(1)</code>,但是要删除数据却是开销很大的，因为这需要重排数组中的所有数据。</li>
+<li>相对于<code>ArrayList</code>，<code>LinkedList</code>插入是更快的。因为<code>LinkedList</code>不像<code>ArrayList</code>一样，不需要改变数组的大小，也不需要在数组装满的时候要将所有的数据重新装入一个新的数组，这是<code>ArrayList</code>最坏的一种情况，时间复杂度是<code>O(n)</code>，而<code>LinkedList</code>中插入或删除的时间复杂度仅为<code>O(1)</code>。<code>ArrayList</code>在插入数据时还需要更新索引（除了插入数组的尾部）。</li>
+<li>类似于插入数据，删除数据时，<code>LinkedList</code>也优于<code>ArrayList</code>。</li>
+<li><code>LinkedList</code>需要更多的内存，因为<code>ArrayList</code>的每个索引的位置是实际的数据，而<code>LinkedList</code>中的每个节点中存储的是实际的数据和前后节点的位置。</li>
+</ul>
+<h5 id="3-描述下-Java-中集合（Collections），接口（Interfaces），实现（Implementations）的概念。"><a href="#3-描述下-Java-中集合（Collections），接口（Interfaces），实现（Implementations）的概念。" class="headerlink" title="3.描述下 Java 中集合（Collections），接口（Interfaces），实现（Implementations）的概念。"></a>3.描述下 Java 中集合（Collections），接口（Interfaces），实现（Implementations）的概念。</h5><h5 id="4-插入数据时，ArrayList-LinkedList-Vector谁速度较快？"><a href="#4-插入数据时，ArrayList-LinkedList-Vector谁速度较快？" class="headerlink" title="4.插入数据时，ArrayList, LinkedList, Vector谁速度较快？"></a>4.插入数据时，ArrayList, LinkedList, Vector谁速度较快？</h5><p><code>ArrayList</code>和<code>Vector</code>都是数组实现，但不同的是，<code>Vector</code>是线程安全，加了同步，所以原则上<code>ArrayList</code>比<code>Vector</code>比快；<br><code>LinkekList</code>是链表实现，增删快，查找慢，所以你要是插入数据时，显然<code>LinkedList</code>是最快的，其次是<code>ArrayList</code>，再者<code>Vector</code>属于遗留容器（Java早期的版本中提供的容器，除此之外，<code>Hashtable、Dictionary、BitSet、Stack、Properties</code>都是遗留容器），已经不推荐使用，但是由于<code>ArrayList</code>和<code>LinkedListed</code>都是非线程安全的，如果遇到多个线程操作同一个容器的场景，则可以通过工具类<code>Collections</code>中的<code>synchronizedList</code>方法将其转换成线程安全的容器后再使用（这是对装潢模式的应用，将已有对象传入另一个类的构造器中创建新的对象来增强实现）。</p>
+<h4 id="四、ArrayList"><a href="#四、ArrayList" class="headerlink" title="四、ArrayList"></a>四、ArrayList</h4><h5 id="1-ArrayList-和-HashMap-的默认大小是多数"><a href="#1-ArrayList-和-HashMap-的默认大小是多数" class="headerlink" title="1.ArrayList 和 HashMap 的默认大小是多数?"></a>1.ArrayList 和 HashMap 的默认大小是多数?</h5><p>这里要讨论这些常用的默认初始容量和扩容的原因是：<br>当底层实现涉及到扩容时，容器或重新分配一段更大的连续内存（如果是离散分配则不需要重新分配，离散分配都是插入新元素时动态分配内存），要将容器原来的数据全部复制到新的内存上，这无疑使效率大大降低。<br>加载因子的系数小于等于1，意指  即当元素个数 超过 容量长度*加载因子的系数 时，进行扩容。另外，扩容也是有默认的倍数的，不同的容器扩容情况不同。</p>
+<p><code>ArrayList、Vector</code>默认初始容量为<code>10</code>。<br><code>Vector</code>：线程安全，但速度慢。底层数据结构是数组结构，加载因子为1：即当 元素个数 超过 容量长度 时，进行扩容。扩容增量：原容量的 1倍。如 <code>Vector</code>的容量为<code>10</code>，一次扩容后是容量为<code>20</code>。<br><code>ArrayList</code>：线程不安全，查询速度快。底层数据结构是数组结构，扩容增量：原容量的 <code>0.5倍+1</code>，如 <code>ArrayList</code>的容量为<code>10</code>，一次扩容后是容量为<code>16</code>。</p>
+<p><code>Set</code>(集) 元素无序的、不可重复。<br><code>HashSet</code>：线程不安全，存取速度快。<br>底层实现是一个<code>HashMap</code>（保存数据），实现<code>Set</code>接口<br>默认初始容量为<code>16</code>（为何是16，见下方对HashMap的描述）<br>加载因子为<code>0.75</code>：即当 元素个数 超过 容量长度的<code>0.75</code>倍 时，进行扩容<br>扩容增量：原容量的<code>1</code>倍<br>如 <code>HashSet</code>的容量为<code>16</code>，一次扩容后是容量为<code>32</code>。</p>
+<p><code>Map</code>是一个双列集合<br><code>HashMap</code>：默认初始容量为<code>16</code><br>（为何是<code>16</code>：<code>16</code>是<code>2^4</code>，可以提高查询效率，另外，<code>32=16&lt;&lt;1</code>      –&gt;至于详细的原因可另行分析，或分析源代码）<br>加载因子为<code>0.75</code>：即当 元素个数 超过 容量长度的<code>0.75</code>倍 时，进行扩容<br>扩容增量：原容量的 <code>1</code>倍<br>如 <code>HashSet</code>的容量为<code>16</code>，一次扩容后是容量为<code>32</code>。</p>
+<h5 id="2-ArrayList-和-Set-的区别？"><a href="#2-ArrayList-和-Set-的区别？" class="headerlink" title="2.ArrayList 和 Set 的区别？"></a>2.ArrayList 和 Set 的区别？</h5><ul>
+<li><code>Set</code> 集合是无序不可以重复的的、<code>List</code>集合是有序可以重复的。</li>
+<li><code>ArrayList</code>是数组存储的方式，<code>HashSet</code>存储会先进行<code>HashCode</code>值得比较(<code>hashcode</code>和<code>equals</code>方法)，若相同就不会再存储。</li>
+</ul>
+<p>补充一下：<code>Hashset</code>就是采用哈希算法存取对象的集合，对象用完之后没有回收就是内存泄漏。一个对象一旦<code>hashCode</code>生成之后，再对属性值修改后其<code>Hashcode</code>值就会发生改变，再通过<code>hashSet</code>删除就删除不掉了。</p>
+<p>以上的问题还可以继续有如下变形，理解了就能融会贯通：<br>ArrayList, LinkedList, Vector的区别<br>ArrayList是如何实现的，ArrayList 和 LinkedList 的区别<br>ArrayList如何实现扩容</p>
+<h5 id="6-Array-和-ArrayList-有何区别？什么时候更适合用Array？"><a href="#6-Array-和-ArrayList-有何区别？什么时候更适合用Array？" class="headerlink" title="6.Array 和 ArrayList 有何区别？什么时候更适合用Array？"></a>6.Array 和 ArrayList 有何区别？什么时候更适合用Array？</h5><p><strong>ArrayList可以算是Array的加强版，（对array有所取舍的加强）。</strong><br><strong>存储内容比较： </strong><br>•<code>Array</code>数组可以包含基本类型和对象类型，<br>•<code>ArrayList</code>却只能包含对象类型。<br>但是需要注意的是：<code>Array</code>数组在存放的时候一定是同种类型的元素。<code>ArrayList</code>就不一定了，因为<code>ArrayList</code>可以存储<code>Object</code>。</p>
+<p><strong>空间大小比较：</strong><br>•    它的空间大小是固定的，空间不够时也不能再次申请，所以需要事前确定合适的空间大小。<br>•    <code>ArrayList</code>的空间是动态增长的，如果空间不够，它会创建一个空间比原空间大一倍的新数组，然后将所有元素复制到新数组中，接着抛弃旧数组。而且，每次添加新的元素的时候都会检查内部数组的空间是否足够。（比较麻烦的地方）。</p>
+<p><strong>方法上的比较： </strong><br><code>ArrayList</code>作为<code>Array</code>的增强版，当然是在方法上比<code>Array</code>更多样化，比如添加全部<code>addAll()</code>、删除全部<code>removeAll()</code>、返回迭代器<code>iterator()</code>等。</p>
+<p>适用场景：<br>如果想要保存一些在整个程序运行期间都会存在而且不变的数据，我们可以将它们放进一个全局数组里，但是如果我们单纯只是想要以数组的形式保存数据，而不对数据进行增加等操作，只是方便我们进行查找的话，那么，我们就选择<code>ArrayList</code>。而且还有一个地方是必须知道的，就是如果我们需要对元素进行频繁的移动或删除，或者是处理的是超大量的数据，那么，使用<code>ArrayList</code>就真的不是一个好的选择，因为它的效率很低，使用数组进行这样的动作就很麻烦，那么，我们可以考虑选择<code>LinkedList</code>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Tison
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tisonkong.github.io/github.io/2018/02/28/java基础之数据结构4（Set和List）/" title="详解Java中的Set和List">https://tisonkong.github.io/github.io/2018/02/28/java基础之数据结构4（Set和List）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Interview/" rel="tag"><i class="fa fa-tag"></i> Interview</a>
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/数据结构/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/28/java基础之数据结构1（基础篇）/" rel="next" title="java基础之数据结构（基础篇）">
+                <i class="fa fa-chevron-left"></i> java基础之数据结构（基础篇）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/java 多线程总结篇1之——基本概念/" rel="prev" title="多线程从入门到放弃【1】">
+                多线程从入门到放弃【1】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYyNi8xMDE4MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/cloud.jpg"
+                alt="Tison" />
+            
+              <p class="site-author-name" itemprop="name">Tison</p>
+              <p class="site-description motion-element" itemprop="description">learn conscientiously，live beautifully, dream passionately, love completely</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/tisonkong" target="_blank" title="GitHub">
+                      GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gongdishao@foxmail.com" target="_blank" title="E-Mail">
+                      E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/abcf0e8f851a" target="_blank" title="简书">
+                      简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/139549170/" target="_blank" title="豆瓣">
+                      豆瓣</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、Set"><span class="nav-number">1.</span> <span class="nav-text">一、Set</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Set-里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用-还是-equals-？-它们有何区别"><span class="nav-number">1.1.</span> <span class="nav-text">1.Set 里的元素是不能重复的，那么用什么方法来区分重复与否呢？是用 == 还是 equals()？ 它们有何区别?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-TreeMap：TreeMap-是采用什么树实现的？TreeMap、HashMap、LindedHashMap的区别。"><span class="nav-number">1.2.</span> <span class="nav-text">2.TreeMap：TreeMap 是采用什么树实现的？TreeMap、HashMap、LindedHashMap的区别。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-TreeMap和TreeSet在排序时如何比较元素？Collections工具类中的sort-方法如何比较元素？"><span class="nav-number">1.3.</span> <span class="nav-text">3.TreeMap和TreeSet在排序时如何比较元素？Collections工具类中的sort()方法如何比较元素？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-TreeSet：一个已经构建好的-TreeSet，怎么完成倒排序。"><span class="nav-number">1.4.</span> <span class="nav-text">3.TreeSet：一个已经构建好的 TreeSet，怎么完成倒排序。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-EnumSet-是什么"><span class="nav-number">1.5.</span> <span class="nav-text">4.EnumSet 是什么</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-HashSet和TreeSet有什么区别"><span class="nav-number">1.6.</span> <span class="nav-text">5.HashSet和TreeSet有什么区别?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-HashSet-内部是如何工作的"><span class="nav-number">1.7.</span> <span class="nav-text">6.HashSet 内部是如何工作的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-WeakHashMap-是怎么工作的？"><span class="nav-number">1.8.</span> <span class="nav-text">7.WeakHashMap 是怎么工作的？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、-List"><span class="nav-number">2.</span> <span class="nav-text">二、 List</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-List-Set-Map三个接口，存取元素时各有什么特点？"><span class="nav-number">2.1.</span> <span class="nav-text">1.List, Set, Map三个接口，存取元素时各有什么特点？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-List-Set-Map-是否继承自-Collection-接口"><span class="nav-number">2.2.</span> <span class="nav-text">2.List, Set, Map 是否继承自 Collection 接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-遍历一个-List-有哪些不同的方式"><span class="nav-number">2.3.</span> <span class="nav-text">3.遍历一个 List 有哪些不同的方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、LinkedList"><span class="nav-number">3.</span> <span class="nav-text">三、LinkedList</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-LinkedList-是单向链表还是双向链表"><span class="nav-number">3.1.</span> <span class="nav-text">1.LinkedList 是单向链表还是双向链表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-LinkedList-与-ArrayList-有什么区别"><span class="nav-number">3.2.</span> <span class="nav-text">2.LinkedList 与 ArrayList 有什么区别?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-描述下-Java-中集合（Collections），接口（Interfaces），实现（Implementations）的概念。"><span class="nav-number">3.3.</span> <span class="nav-text">3.描述下 Java 中集合（Collections），接口（Interfaces），实现（Implementations）的概念。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-插入数据时，ArrayList-LinkedList-Vector谁速度较快？"><span class="nav-number">3.4.</span> <span class="nav-text">4.插入数据时，ArrayList, LinkedList, Vector谁速度较快？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、ArrayList"><span class="nav-number">4.</span> <span class="nav-text">四、ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-ArrayList-和-HashMap-的默认大小是多数"><span class="nav-number">4.1.</span> <span class="nav-text">1.ArrayList 和 HashMap 的默认大小是多数?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-ArrayList-和-Set-的区别？"><span class="nav-number">4.2.</span> <span class="nav-text">2.ArrayList 和 Set 的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-Array-和-ArrayList-有何区别？什么时候更适合用Array？"><span class="nav-number">4.3.</span> <span class="nav-text">6.Array 和 ArrayList 有何区别？什么时候更适合用Array？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tison</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.mist</a> v5.1.4</div>
+-->
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共65.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

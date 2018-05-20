@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a1c27c4a"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/iCloud.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Interview,java,IO," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YitaiCloud" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="I/O类库中使用“流”这个抽象概念。Java对设备中数据的操作是通过流的方式。表示任何有能力产出数据的数据源对象，或者是有能力接受数据的接收端对象。“流”屏蔽了实际的I/O设备中处理数据的细节。IO流用来处理设备之间的数据传输。设备是指硬盘、内存、键盘录入、网络等。">
+<meta name="keywords" content="Interview,java,IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解IO的使用">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/05/20/详解IO的使用/index.html">
+<meta property="og:site_name" content="YitaiCloud">
+<meta property="og:description" content="I/O类库中使用“流”这个抽象概念。Java对设备中数据的操作是通过流的方式。表示任何有能力产出数据的数据源对象，或者是有能力接受数据的接收端对象。“流”屏蔽了实际的I/O设备中处理数据的细节。IO流用来处理设备之间的数据传输。设备是指硬盘、内存、键盘录入、网络等。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-b2b4859ffeb3ae26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-20T14:35:08.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解IO的使用">
+<meta name="twitter:description" content="I/O类库中使用“流”这个抽象概念。Java对设备中数据的操作是通过流的方式。表示任何有能力产出数据的数据源对象，或者是有能力接受数据的接收端对象。“流”屏蔽了实际的I/O设备中处理数据的细节。IO流用来处理设备之间的数据传输。设备是指硬盘、内存、键盘录入、网络等。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8926909-b2b4859ffeb3ae26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/05/20/详解IO的使用/"/>
+
+
+
+
+
+  <title>详解IO的使用 | YitaiCloud</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/tisonkong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YitaiCloud</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以太云</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/05/20/详解IO的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tison">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cloud.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YitaiCloud">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">详解IO的使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T22:35:08+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-IO/" itemprop="url" rel="index">
+                    <span itemprop="name">Java IO</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,264
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>I/O类库中使用“流”这个抽象概念。Java对设备中数据的操作是通过流的方式。表示任何有能力产出数据的数据源对象，或者是有能力接受数据的接收端对象。“流”屏蔽了实际的I/O设备中处理数据的细节。IO流用来处理设备之间的数据传输。设备是指硬盘、内存、键盘录入、网络等。<br><a id="more"></a><br>IO的分类可以为：</p>
+<ul>
+<li>流按操作数据类型的不同分为两种：字节流与字符流。</li>
+<li>流按流向分为：输入流，输出流（以程序为参照物，输入到程序，或是从程序输出）<br><img src="http://upload-images.jianshu.io/upload_images/8926909-b2b4859ffeb3ae26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IO流继承体系"><h4 id="一、字节流"><a href="#一、字节流" class="headerlink" title="一、字节流"></a>一、字节流</h4><h5 id="1、Inpustream"><a href="#1、Inpustream" class="headerlink" title="1、Inpustream"></a>1、Inpustream</h5><code>InputStream</code>有<code>read</code>方法，一次读取一个字节，<code>OutputStream</code>的<code>write</code>方法一次写一个<code>int</code>。这两个类都是抽象类。意味着不能创建对象，那么需要找到具体的子类来使用。操作流的步骤都是：</li>
+</ul>
+<p>第一步：1：打开流（即创建流）<br>第二步：2：通过流读取内容<br>第三步：3：用完后，关闭流资源</p>
+<p>案例一：使用 <code>read()</code>方法，一次读取一个字节,读到文件末尾返回-1.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showContent</span><span class="params">(String path)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       <span class="comment">// 打开流</span></span><br><span class="line">       FileInputStream fis = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> len;</span><br><span class="line">       <span class="keyword">while</span> ((len = fis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">           System.out.print((<span class="keyword">char</span>) len);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 使用完关闭流</span></span><br><span class="line">       fis.close();</span><br></pre></td></tr></table></figure></p>
+<p>案例二：使用<code>read()</code>方法的时候，可以将读到的数据装入到字节数组中，一次性的操作数组，可以提高效率。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showContent2</span><span class="params">(String path)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 打开流</span></span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过流读取内容</span></span><br><span class="line">        <span class="keyword">byte</span>[] byt = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = fis.read(byt);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;len; i++) &#123;</span><br><span class="line">            System.out.print(byt[i]);</span><br><span class="line">    　　&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用完关闭流</span></span><br><span class="line">        fis.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>案例三：使用<code>read(byte[] b,int off,int len)</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 把数组的一部分当做流的容器来使用</span></span><br><span class="line"><span class="comment">   * read(byte[] b,int off,int len)</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showContent3</span><span class="params">(String path)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">      <span class="comment">// 打开流</span></span><br><span class="line">      FileInputStream fis = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 通过流读取内容</span></span><br><span class="line">      <span class="keyword">byte</span>[] byt = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">      <span class="comment">// 从什么地方开始存读到的数据</span></span><br><span class="line">      <span class="keyword">int</span> start = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 希望最多读多少个(如果是流的末尾，流中没有足够数据)</span></span><br><span class="line">      <span class="keyword">int</span> maxLen = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 实际存放了多少个</span></span><br><span class="line">      <span class="keyword">int</span> len = fis.read(byt, start, maxLen);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; start + maxLen; i++) &#123;</span><br><span class="line">          System.out.print((<span class="keyword">char</span>) byt[i]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 使用完关闭流</span></span><br><span class="line">      fis.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>案例四（推荐使用）：使用缓冲(提高效率),并循环读取(读完所有内容).<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用字节数组当缓冲</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showContent7</span><span class="params">(String path)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line">        <span class="keyword">byte</span>[] byt = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = fis.read(byt)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(byt, <span class="number">0</span>, len));</span><br><span class="line">        &#125;</span><br><span class="line">        fis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="2、OutputStream"><a href="#2、OutputStream" class="headerlink" title="2、OutputStream"></a>2、OutputStream</h5><p><code>OutputStram</code> 的<code>write</code>方法，一次只能写一个字节。成功的向文件中写入了内容。但是并不高效，如何提高效率呢？可以使用缓冲，在<code>OutputStram</code>类中有<code>write(byte[] b)</code>方法，将 <code>b.length</code>个字节从指定的 <code>byte</code> 数组写入此输出流中。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeTxtFile</span><span class="params">(String path)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 1：打开文件输出流，流的目的地是指定的文件</span></span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(path,<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2：通过流向文件写数据</span></span><br><span class="line">        <span class="keyword">byte</span>[] byt = <span class="string">"java"</span>.getBytes();</span><br><span class="line">        fos.write(byt);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3:用完流后关闭流</span></span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="3、输入输出流综合使用——文件拷贝实现"><a href="#3、输入输出流综合使用——文件拷贝实现" class="headerlink" title="3、输入输出流综合使用——文件拷贝实现"></a>3、输入输出流综合使用——文件拷贝实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(String srcPath, String destPath)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 打开输入流，输出流</span></span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(srcPath);</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(destPath);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取和写入信息</span></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用字节数组，当做缓冲区</span></span><br><span class="line">        <span class="keyword">byte</span>[] byt = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">while</span> ((len = fis.read(byt)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            fos.write(byt, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭流</span></span><br><span class="line">        fis.close();</span><br><span class="line">        fos.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>可以根据拷贝的需求调整数组的大小，一般是1024的整数倍。使用缓冲后效率大大提高。目前我们是抛出处理，一旦出现了异常，<code>close</code>就没有执行，也就没有释放资源。那么为了保证<code>close</code>的执行该如何处理呢。那么就需要使用<code>try{} catch(){}finally{}</code>语句。<code>try</code>中放入可能出现异常的语句，<code>catch</code>是捕获异常对象，<code>fianlly</code>是一定要执行的代码。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(String srcPath, String destPath)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line">        FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(srcPath);</span><br><span class="line">            fos = <span class="keyword">new</span> FileOutputStream(destPath);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">byte</span>[] byt = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span> * <span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> ((len = fis.read(byt)) != -<span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">                fos.write(byt, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fis != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    fis.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (fos != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        fos.close();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>大量的异常捕获代码使得以上代码变得十分臃肿难看，好在java7提供了<strong>TWR（try-with-resource）</strong>语法糖，由于很多外部资源类都间接的实现了<code>AutoCloseable</code>接口（单方法回调接口），因此可以利用TWR语法在<code>try</code>结束的时候通过回调的方式自动调用外部资源类的<code>close()</code>方法，避免书写冗长的<code>finally</code>代码块。`<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyByTWR</span><span class="params">(String srcPath, String destPath)</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>( FileInputStream fis = <span class="keyword">new</span> FileInputStream(srcPath);</span><br><span class="line">         FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(destPath))&#123;</span><br><span class="line">        <span class="keyword">byte</span>[] byt = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span> * <span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = fis.read(byt)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            fos.write(byt, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当<code>try</code>语句块运行结束时，<code>FileInputStream / FileOutputStream</code>会被自动关闭。这是因为<code>FileInputStream</code>实现了java中的<code>java.lang.AutoCloseable</code>接口。所有实现了这个接口的类都可以在<code>try-with-resources</code>结构中使用上面的例子在try关键字后的括号里创建了两个资源——<code>FileInputStream</code> 和<code>FileOutputStream</code>。当程序运行离开try语句块时，这两个资源都会被自动关闭,这些资源将按照他们被创建顺序的逆序来关闭。首先<code>FileOutputStream</code>会被关闭，然后<code>FileInputStream</code>会被关闭。<br>怎么实现对资源的关闭呢？当<code>try-with-resources</code>结构中抛出一个异常，同时<code>FileInputStream</code>被关闭时（调用了其<code>close</code>方法）也抛出一个异常，<code>try-with-resources</code>结构中抛出的异常会向外传播，而<code>FileInputStream</code>被关闭时抛出的异常被抑制了。这与文章开始处利用旧风格代码的例子（在finally语句块中关闭资源）相反。</p>
+<blockquote>
+<p>具体参考：<a href="http://ifeve.com/java-7%E4%B8%AD%E7%9A%84try-with-resources/" target="_blank" rel="noopener">Java 7中的Try-with-resources</a></p>
+</blockquote>
+<h5 id="4、缓冲流"><a href="#4、缓冲流" class="headerlink" title="4、缓冲流"></a>4、缓冲流</h5><p>Java其实提供了专门的字节流缓冲来提高效率。<code>BufferedInputStream</code> 和 <code>BufferedOutputStream。BufferedOutputStream</code>和<code>BufferedOutputStream</code>类可以通过减少读写次数来提高输入和输出的速度。它们内部有一个缓冲区，用来提高处理效率。查看API文档，发现可以指定缓冲区的大小。其实内部也是封装了字节数组。没有指定缓冲区大小，默认的字节是8192。显然缓冲区输入流和缓冲区输出流要配合使用。首先缓冲区输入流会将读取到的数据读入缓冲区，当缓冲区满时，或者调用<code>flush</code>方法，缓冲输出流会将数据写出。<br>注意：当然使用缓冲流来进行提高效率时，对于小文件可能看不到性能的提升。但是文件稍微大一些的话，就可以看到实质的性能提升了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String srcPath = <span class="string">"c:\\a.mp3"</span>;</span><br><span class="line">        String destPath = <span class="string">"d:\\copy.mp3"</span>;</span><br><span class="line">        copyFile(srcPath, destPath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(String srcPath, String destPath)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 打开输入流，输出流</span></span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(srcPath);</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(destPath);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用缓冲流</span></span><br><span class="line">        BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(fis);</span><br><span class="line">        BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取和写入信息</span></span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> ((len = bis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">            bos.write(len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭流</span></span><br><span class="line">        bis.close();</span><br><span class="line">        bos.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="二、字符流"><a href="#二、字符流" class="headerlink" title="二、字符流"></a>二、字符流</h4><p> 计算机并不区分二进制文件与文本文件。所有的文件都是以二进制形式来存储的，因此，从本质上说，所有的文件都是二进制文件。所以字符流是建立在字节流之上的，它能够提供字符层次的编码和解码。可以说字符流就是：字节流 + 编码表，为了更便于操作文字数据。字符流的抽象基类：<code>Reader ， Writer</code>。由这些类派生出来的子类名称都是以其父类名作为子类名的后缀，如<code>FileReader、FileWriter</code>。</p>
+<h5 id="1、Reader"><a href="#1、Reader" class="headerlink" title="1、Reader"></a>1、Reader</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>读取一个字符。返回的是读到的那个字符。如果读到流的末尾，返回-1.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">char</span>[])</span></span></span><br></pre></td></tr></table></figure></p>
+<p>将读到的字符存入指定的数组中，返回的是读到的字符个数，也就是往数组里装的元素的个数。如果读到流的末尾，返回-1.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">close()</span><br></pre></td></tr></table></figure></p>
+<p>读取字符其实用的是window系统的功能，就希望使用完毕后，进行资源的释放<br>由于<code>Reader</code>也是抽象类，所以想要使用字符输入流需要使用<code>Reader</code>的实现类——<code>FileReader</code>。1，用于读取文本文件的流对象。2，用于关联文本文件。<br>构造函数：在读取流对象初始化的时候，必须要指定一个被读取的文件。如果该文件不存在会发生FileNotFoundException。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用字符流读取文件内容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFileByReader</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Reader reader = <span class="keyword">new</span> FileReader(path);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ((len = reader.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        System.out.print((<span class="keyword">char</span>) len);</span><br><span class="line">    &#125;</span><br><span class="line">    reader.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="2、Writer"><a href="#2、Writer" class="headerlink" title="2、Writer"></a>2、Writer</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">write(ch): <span class="comment">//将一个字符写入到流中。</span></span><br><span class="line"></span><br><span class="line">write(<span class="keyword">char</span>[]):<span class="comment">// 将一个字符数组写入到流中。</span></span><br><span class="line"></span><br><span class="line">write(String): <span class="comment">//将一个字符串写入到流中。</span></span><br><span class="line"></span><br><span class="line">flush(): <span class="comment">//刷新流，将流中的数据刷新到目的地中，流还存在。</span></span><br><span class="line"></span><br><span class="line">close(): <span class="comment">//关闭资源：在关闭前会先调用flush()，刷新流中的数据去目的地。然流关闭。</span></span><br></pre></td></tr></table></figure>
+<p>基本方法和<code>OutputStream</code> 类似，有<code>write</code>方法，功能更多一些。可以接收字符串。<code>Writer</code>是抽象类无法创建对象，<code>Writer</code>的实现子类为<code>FileWriter</code>。默认的<code>FileWriter</code>方法新值会覆盖旧值，想要实现追加功能需要使用如下构造函数创建输出流 <code>append</code>值为<code>true</code>了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileWriter(String fileName, <span class="keyword">boolean</span> append)</span><br><span class="line">FileWriter(File file, <span class="keyword">boolean</span> append)</span><br></pre></td></tr></table></figure></p>
+<h5 id="3、文件拷贝——完善异常处理风格"><a href="#3、文件拷贝——完善异常处理风格" class="headerlink" title="3、文件拷贝——完善异常处理风格"></a>3、文件拷贝——完善异常处理风格</h5><p>一次读一个字符就写一个字符，效率不高。把读到的字符放到字符数组中，再一次性的写出，缓冲数组可以提高效率。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 使用字符流拷贝文件，有完善的异常处理</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile2</span><span class="params">(String path1, String path2)</span> </span>&#123;</span><br><span class="line">       Reader reader = <span class="keyword">null</span>;</span><br><span class="line">       Writer writer = <span class="keyword">null</span>;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">// 打开流</span></span><br><span class="line">           reader = <span class="keyword">new</span> FileReader(path1);</span><br><span class="line">           writer = <span class="keyword">new</span> FileWriter(path2);</span><br><span class="line"></span><br><span class="line">           <span class="comment">// 进行拷贝</span></span><br><span class="line">           <span class="keyword">int</span> ch = -<span class="number">1</span>;</span><br><span class="line">　　　　　　　<span class="keyword">char</span> [] arr=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</span><br><span class="line">           <span class="keyword">while</span> ((ch = reader.read(arr)) != -<span class="number">1</span>) &#123;</span><br><span class="line">               writer.write(ch);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">       &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">           <span class="comment">// 关闭流，注意一定要能执行到close()方法，所以都要放到finally代码块中</span></span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">                   reader.close();</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">           &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">               <span class="keyword">try</span> &#123;</span><br><span class="line">                   <span class="keyword">if</span> (writer != <span class="keyword">null</span>) &#123;</span><br><span class="line">                       writer.close();</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                   <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>同样可以用TWR风格进行简写，将大量finally中的资源关闭操作省略掉，声明赋值语句放入到try()中即可。</p>
+<h5 id="4、缓冲流-1"><a href="#4、缓冲流-1" class="headerlink" title="4、缓冲流"></a>4、缓冲流</h5><p>使用字符流缓冲区拷贝文本文件可以提高效率，<code>Reader</code>有一个子类<code>BufferedReader</code>， 子类继承父类显然子类可以重写父类的方法可以增加自己的新方法。例如一次读一行就是常用的操作.那么<code>BufferedReader</code>类就提供了这个方法,可以查看<code>readLine()</code>方法具备 一次读取一个文本行的功能。很显然,该子类可以对功能进行增强。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(File srcFile, File destFile)</span><span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">// 创建字符输入流</span></span><br><span class="line">        FileReader fr = <span class="keyword">new</span> FileReader(srcFile);</span><br><span class="line">        <span class="comment">// 创建字符输出流</span></span><br><span class="line">        FileWriter fw = <span class="keyword">new</span> FileWriter(destFile);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 字符输入流的缓冲流</span></span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(fr);</span><br><span class="line">        <span class="comment">// 字符输出流的缓冲流</span></span><br><span class="line">        BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(fw);</span><br><span class="line"></span><br><span class="line">        String line = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 一次读取一行</span></span><br><span class="line">        <span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 一次写出一行.</span></span><br><span class="line">            bw.write(line);</span><br><span class="line">            <span class="comment">// 刷新缓冲</span></span><br><span class="line">            bw.flush();</span><br><span class="line">            <span class="comment">// 进行换行,由于readLine方法默认没有换行.需要手动换行</span></span><br><span class="line">            bw.newLine();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 关闭流</span></span><br><span class="line">        br.close();</span><br><span class="line">        bw.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="三、装饰器模式："><a href="#三、装饰器模式：" class="headerlink" title="三、装饰器模式："></a>三、装饰器模式：</h4><p>使用分层对象来动态透明的向单个对象中添加责任（功能）。装饰器指定包装在最初的对象周围的所有对象都具有相同的基本接口。某些对象是可装饰的，可以通过将其他类包装在这个可装饰对象的四周，来将功能分层。装饰器必须具有和他所装饰的对象相同的接口。Java I/O类库需要多种不同的功能组合，所以使用了装饰器模式。<code>Filterxxx</code>类是<code>JavaIO</code>提供的装饰器基类，即我们要想实现一个新的装饰器，就要继承这些类。</p>
+<p>继承实现的增强类：<br>优点：代码结构清晰，而且实现简单<br>缺点：对于每一个的需要增强的类都要创建具体的子类来帮助其增强，这样会导致继承体系过于庞大。</p>
+<p>修饰模式实现的增强类：<br>优点：内部可以通过多态技术对多个需要增强的类进行增强<br>缺点：需要内部通过多态技术维护需要增强的类的实例。进而使得代码稍微复杂。</p>
+<h4 id="四、面试总结："><a href="#四、面试总结：" class="headerlink" title="四、面试总结："></a>四、面试总结：</h4><h5 id="1、为了提高读写性能，可以采用什么流"><a href="#1、为了提高读写性能，可以采用什么流" class="headerlink" title="1、为了提高读写性能，可以采用什么流"></a>1、为了提高读写性能，可以采用什么流</h5><p>针对读写对象的不同，字节流可以采用带缓冲区的BufferedInputStream和BufferedOutputStream，字符流可以采用带缓冲区的BufferedReader和BufferedWriter。</p>
+<h5 id="2、Java中有几种类型的流"><a href="#2、Java中有几种类型的流" class="headerlink" title="2、Java中有几种类型的流"></a>2、Java中有几种类型的流</h5><p>字节流和字符流。字节流继承于<code>InputStream、OutputStream</code>，字符流继承于<code>Reader、Writer</code>。在<code>java.io</code>包中还有许多其他的流，主要是为了提高性能和使用方便。关于Java的I/O需要注意的有两点：一是两种对称性（输入和输出的对称性，字节和字符的对称性）；二是两种设计模式（适配器模式和装潢模式）。另外Java中的流不同于C#的是它只有一个维度一个方向。</p>
+<h5 id="3、JDK-为每种类型的流提供了一些抽象类以供继承，分别是哪些类"><a href="#3、JDK-为每种类型的流提供了一些抽象类以供继承，分别是哪些类" class="headerlink" title="3、JDK 为每种类型的流提供了一些抽象类以供继承，分别是哪些类"></a>3、JDK 为每种类型的流提供了一些抽象类以供继承，分别是哪些类</h5><p>Java中的流分为两种，一种是字节流，另一种是字符流，分别由四个抽象类来表示（每种流包括输入和输出两种所以一共四个）:<code>InputStream，OutputStream，Reader，Writer</code>。Java中其他多种多样变化的流均是由它们派生出来的.</p>
+<p>4、对文本文件操作用什么I/O流？<br><code>FileReader/FileWriter</code></p>
+<p>5、对各种基本数据类型和String类型的读写，采用什么流？ <code>DataInputStream、DataOutputStream</code></p>
+<p>6、能指定字符编码的 I/O 流类型是什么？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader/BufferedWriter</span><br><span class="line">BufferedInputStream/BufferedOutputStream</span><br></pre></td></tr></table></figure></p>
+<p>回答以上问题需要分清各个IO流子类的应用场景：</p>
+<blockquote>
+<p><code>FileInputStream/FileOutputStream</code>  需要逐个字节处理原始二进制流的时候使用，效率低下。<br><code>FileReader/FileWriter</code> 需要组个字符处理的时候使用。<br><code>StringReader/StringWriter</code> 需要处理字符串的时候，可以将字符串保存为字符数组。<br><code>PrintStream/PrintWriter</code> 用来包装<code>FileOutputStream</code> 对象，方便直接将<code>String</code>字符串写入文件 。<br><code>Scanner</code>　用来包装<code>System.in</code>流，很方便地将输入的<code>String</code>字符串转换成需要的数据类型。<br><code>InputStreamReader/OutputStreamReader</code> ,  字节和字符的转换桥梁，在网络通信或者处理键盘输入的时候用。<br><code>BufferedReader/BufferedWriter</code>， <code>BufferedInputStream/BufferedOutputStream</code>， 缓冲流用来包装字节流后者字符流，提升IO性能，<code>BufferedReader</code>还可以方便地读取一行，简化编程。<br><code>SequenceInputStream(InputStream s1, InputStream s2)</code>序列流，合并流对象时使用.<br><code>ObjectInputStream、ObjectOutputStream</code>，方法用于序列化对象并将它们写入一个流，另一个方法用于读取流并反序列化对象。<br><code>ByteArrayInputStream、ByteArrayOutputStream</code>，操作数组<br><code>DataInputStream、DataOutputStream</code>操作基本数据类型和字符串。</p>
+</blockquote>
+<h5 id="7、写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。"><a href="#7、写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。" class="headerlink" title="7、写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。"></a>7、写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">MyUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 工具类中的方法都是静态方式访问的因此将构造器私有不允许创建对象(绝对好习惯)</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">MyUtil</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> AssertionError();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 统计给定文件中给定字符串的出现次数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> filename  文件名</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> word 字符串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 字符串在文件中出现的次数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countWordInFile</span><span class="params">(String filename, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span> (FileReader fr = <span class="keyword">new</span> FileReader(filename)) &#123;</span><br><span class="line">            <span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(fr)) &#123;</span><br><span class="line">                String line = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">while</span> ((line = br.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">int</span> index = -<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">while</span> (line.length() &gt;= word.length() &amp;&amp; (index = line.indexOf(word)) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        counter++;</span><br><span class="line">                        line = line.substring(index + word.length());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> counter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Tison
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tisonkong.github.io/github.io/2018/05/20/详解IO的使用/" title="详解IO的使用">https://tisonkong.github.io/github.io/2018/05/20/详解IO的使用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Interview/" rel="tag"><i class="fa fa-tag"></i> Interview</a>
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/java基础之IO流（设计模式）/" rel="next" title="结合IO类讲讲装饰者模式">
+                <i class="fa fa-chevron-left"></i> 结合IO类讲讲装饰者模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/java web基础篇——Web服务及Tomcat总结/" rel="prev" title="Web服务器及Tomcat总结">
+                Web服务器及Tomcat总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYyNi8xMDE4MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/cloud.jpg"
+                alt="Tison" />
+            
+              <p class="site-author-name" itemprop="name">Tison</p>
+              <p class="site-description motion-element" itemprop="description">learn conscientiously，live beautifully, dream passionately, love completely</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/tisonkong" target="_blank" title="GitHub">
+                      GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gongdishao@foxmail.com" target="_blank" title="E-Mail">
+                      E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/abcf0e8f851a" target="_blank" title="简书">
+                      简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/139549170/" target="_blank" title="豆瓣">
+                      豆瓣</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、字节流"><span class="nav-number">1.</span> <span class="nav-text">一、字节流</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、Inpustream"><span class="nav-number">1.1.</span> <span class="nav-text">1、Inpustream</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、OutputStream"><span class="nav-number">1.2.</span> <span class="nav-text">2、OutputStream</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、输入输出流综合使用——文件拷贝实现"><span class="nav-number">1.3.</span> <span class="nav-text">3、输入输出流综合使用——文件拷贝实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、缓冲流"><span class="nav-number">1.4.</span> <span class="nav-text">4、缓冲流</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、字符流"><span class="nav-number">2.</span> <span class="nav-text">二、字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、Reader"><span class="nav-number">2.1.</span> <span class="nav-text">1、Reader</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、Writer"><span class="nav-number">2.2.</span> <span class="nav-text">2、Writer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、文件拷贝——完善异常处理风格"><span class="nav-number">2.3.</span> <span class="nav-text">3、文件拷贝——完善异常处理风格</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、缓冲流-1"><span class="nav-number">2.4.</span> <span class="nav-text">4、缓冲流</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、装饰器模式："><span class="nav-number">3.</span> <span class="nav-text">三、装饰器模式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、面试总结："><span class="nav-number">4.</span> <span class="nav-text">四、面试总结：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、为了提高读写性能，可以采用什么流"><span class="nav-number">4.1.</span> <span class="nav-text">1、为了提高读写性能，可以采用什么流</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、Java中有几种类型的流"><span class="nav-number">4.2.</span> <span class="nav-text">2、Java中有几种类型的流</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、JDK-为每种类型的流提供了一些抽象类以供继承，分别是哪些类"><span class="nav-number">4.3.</span> <span class="nav-text">3、JDK 为每种类型的流提供了一些抽象类以供继承，分别是哪些类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。"><span class="nav-number">4.4.</span> <span class="nav-text">7、写一个方法，输入一个文件名和一个字符串，统计这个字符串在这个文件中出现的次数。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tison</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.mist</a> v5.1.4</div>
+-->
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共65.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>

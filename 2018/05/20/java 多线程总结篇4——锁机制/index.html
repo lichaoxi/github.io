@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "a1c27c4a"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/iCloud.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/iCloud.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Interview,java,多线程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YitaiCloud" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在开发Java多线程应用程序中，各个线程之间由于要共享资源，必须用到锁机制。Java提供了多种多线程锁机制的实现方式，常见的有·synchronized、ReentrantLock、Semaphore、AtomicInteger·等。每种机制都有优缺点与各自的适用场景，必须熟练掌握他们的特点才能在Java多线程应用开发时得心应手。——《Java锁机制详解》。">
+<meta name="keywords" content="Interview,java,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程从入门到放弃【4】">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/05/20/java 多线程总结篇4——锁机制/index.html">
+<meta property="og:site_name" content="YitaiCloud">
+<meta property="og:description" content="在开发Java多线程应用程序中，各个线程之间由于要共享资源，必须用到锁机制。Java提供了多种多线程锁机制的实现方式，常见的有·synchronized、ReentrantLock、Semaphore、AtomicInteger·等。每种机制都有优缺点与各自的适用场景，必须熟练掌握他们的特点才能在Java多线程应用开发时得心应手。——《Java锁机制详解》。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-8ffafbe023d370cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-d2a25c310db90f5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-20T14:35:08.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程从入门到放弃【4】">
+<meta name="twitter:description" content="在开发Java多线程应用程序中，各个线程之间由于要共享资源，必须用到锁机制。Java提供了多种多线程锁机制的实现方式，常见的有·synchronized、ReentrantLock、Semaphore、AtomicInteger·等。每种机制都有优缺点与各自的适用场景，必须熟练掌握他们的特点才能在Java多线程应用开发时得心应手。——《Java锁机制详解》。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8926909-8ffafbe023d370cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/05/20/java 多线程总结篇4——锁机制/"/>
+
+
+
+
+
+  <title>多线程从入门到放弃【4】 | YitaiCloud</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/tisonkong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YitaiCloud</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">以太云</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/05/20/java 多线程总结篇4——锁机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tison">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cloud.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YitaiCloud">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">多线程从入门到放弃【4】</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T22:35:08+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,605
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  27
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在开发Java多线程应用程序中，各个线程之间由于要共享资源，必须用到锁机制。Java提供了多种多线程锁机制的实现方式，常见的有·synchronized、ReentrantLock、Semaphore、AtomicInteger·等。每种机制都有优缺点与各自的适用场景，必须熟练掌握他们的特点才能在Java多线程应用开发时得心应手。——<a href="https://www.cnblogs.com/hanganglin/p/3577096.html" target="_blank" rel="noopener">《Java锁机制详解》</a>。<br><a id="more"></a><br>线程同步有关的类图关系可用以下的图总结：<br><img src="http://upload-images.jianshu.io/upload_images/8926909-8ffafbe023d370cf.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="线程同步的类图"></p>
+<h5 id="1、Java-Concurrency-API-中的-Lock接口是什么？对比同步它有什么优势？"><a href="#1、Java-Concurrency-API-中的-Lock接口是什么？对比同步它有什么优势？" class="headerlink" title="1、Java Concurrency API 中的 Lock接口是什么？对比同步它有什么优势？"></a>1、Java Concurrency API 中的 Lock接口是什么？对比同步它有什么优势？</h5><p><code>Lock</code>接口比同步方法和同步块（这里的同步就是考察<code>Synchronized</code>关键字）提供了更具扩展性的锁操作。<br>如果一个代码块被<code>synchronized</code>修饰了，当一个线程获取了对应的锁，并执行该代码块时，其他线程便只能一直等待，等待获取锁的线程释放锁，而这里获取锁的线程释放锁只会有两种情况：</p>
+<ul>
+<li>获取锁的线程执行完了该代码块，然后线程释放对锁的占有；</li>
+<li>线程执行发生异常，此时JVM会让线程自动释放锁。</li>
+</ul>
+<p>那么如果这个获取锁的线程由于要等待IO或者其他原因（比如调用sleep方法）被阻塞了，但是又没有释放锁，其他线程便只能阻塞等待，非常影响效率。因此就需要有一种机制可以不让等待的线程一直无期限地等待下去（比如只等待一定的时间或者能够响应中断），通过<code>Lock</code>就可以办到。</p>
+<p>再举个例子：当有多个线程读写文件时，读操作和写操作会发生冲突现象，写操作和写操作会发生冲突现象，但是读操作和读操作不会发生冲突现象。<br>但是采用synchronized关键字来实现同步的话，就会导致一个问题：如果多个线程都只是进行读操作，所以当一个线程在进行读操作时，其他线程只能等待无法进行读操作。因此就需要一种机制来使得多个线程都只是进行读操作时，线程之间不会发生冲突，通过<code>Lock</code>就可以办到。</p>
+<p><code>Lock</code>不是Java语言内置的，<code>synchronized</code>是Java语言的关键字，因此是内置特性，<code>Lock</code>是一个类，通过这个类可以实现同步访问；他们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。它的优势有：可以使锁更公平；可以使线程在等待锁的时候响应中断；可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间；可以在不同的范围，以不同的顺序获取和释放锁。</p>
+<p>关于API及代码的例子请移步：<a href="https://www.cnblogs.com/dolphin0520/p/3923167.html" target="_blank" rel="noopener">《java并发编程Lock》</a>。常用接口方法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Lock</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lockInterruptibly</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">tryLock</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">tryLock</span><span class="params">(<span class="keyword">long</span> time, TimeUnit unit)</span> <span class="keyword">throws</span> InterruptedException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Condition <span class="title">newCondition</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先<code>lock()</code>方法是平常使用得最多的一个方法，就是用来获取锁。如果锁已被其他线程获取，则进行等待。由于在前面讲到如果采用<code>Lock</code>，必须主动去释放锁，并且在发生异常时，不会自动释放锁。因此一般来说，使用<code>Lock</code>必须在<code>try{}catch{}</code>块中进行，并且将释放锁的操作放在<code>finally</code>块中进行，以保证锁一定被被释放，防止死锁的发生。通常使用<code>Lock</code>来进行同步的话，是以下面这种形式去使用的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = ...;</span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//处理任务</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">    lock.unlock();   <span class="comment">//释放锁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>tryLock()</code>方法是有返回值的，它表示用来尝试获取锁，如果获取成功，则返回<code>true</code>，如果获取失败（即锁已被其他线程获取），则返回<code>false</code>，也就说这个方法无论如何都会立即返回。在拿不到锁时不会一直在那等待。<code>tryLock(long time, TimeUnit unit)</code>方法和<code>tryLock()</code>方法是类似的，只不过区别在于这个方法在拿不到锁时会等待一定的时间，在时间期限之内如果还拿不到锁，就返回<code>false</code>。如果如果一开始拿到锁或者在等待期间内拿到了锁，则返回<code>true</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Lock lock = ...;</span><br><span class="line"><span class="keyword">if</span>(lock.tryLock()) &#123;</span><br><span class="line">     <span class="keyword">try</span>&#123;</span><br><span class="line">         <span class="comment">//处理任务</span></span><br><span class="line">     &#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line"></span><br><span class="line">     &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">         lock.unlock();   <span class="comment">//释放锁</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//如果不能获取锁，则直接做其他事情</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>lockInterruptibly()</code>方法比较特殊，当通过这个方法去获取锁时，如果线程正在等待获取锁，则这个线程能够响应中断，即中断线程的等待状态。也就使说，当两个线程同时通过<code>lock.lockInterruptibly()</code>想获取某个锁时，假若此时线程A获取到了锁，而线程B只有在等待，那么对线程B调用<code>threadB.interrupt()</code>方法能够中断线程B的等待过程。由于<code>lockInterruptibly()</code>的声明中抛出了异常，所以<code>lock.lockInterruptibly()</code>必须放在try块中或者在调用<code>lockInterruptibly()</code>的方法外声明抛出<code>InterruptedException</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    lock.lockInterruptibly();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="comment">//.....</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">finally</span> &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ReentrantLock</code>，意思是“可重入锁”，<code>ReentrantLock</code>是唯一实现了<code>Lock</code>接口的类，并且<code>ReentrantLock</code>提供了更多的方法。以下给出一个<code>ReentrantLock</code>的运行实例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock();    <span class="comment">//注意这个地方，声明为类的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span>  </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Test test = <span class="keyword">new</span> Test();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                test.insert(Thread.currentThread());</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;.start();</span><br><span class="line">         <span class="comment">//可以用Java箭头函数特性改写上述冗余代码：</span></span><br><span class="line">         <span class="comment">// new Thread()&#123;()-&gt;Thread.currentThread&#125;.start();</span></span><br><span class="line">        <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                test.insert(Thread.currentThread());</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(Thread thread)</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(thread.getName()+<span class="string">"得到了锁"</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++) &#123;</span><br><span class="line">                arrayList.add(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO:</span> handle exception</span></span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(thread.getName()+<span class="string">"释放了锁"</span>);</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>上文中提到了Lock接口以及对象，使用它，很优雅的控制了竞争资源的安全访问，但是这种锁不区分读写，称这种锁为普通锁。为了提高性能，Java提供了读写锁，在读的地方使用读锁，在写的地方使用写锁，灵活控制，如果没有写锁的情况下，读是无阻塞的,在一定程度上提高了程序的执行效率。Java中读写锁有个接口<code>java.util.concurrent.locks. ReadWriteLock</code>，也有具体的实现<code>ReentrantReadWriteLock</code>，因而会有下面的提问：</p>
+<h5 id="2、ReadWriteLock是什么？"><a href="#2、ReadWriteLock是什么？" class="headerlink" title="2、ReadWriteLock是什么？"></a>2、ReadWriteLock是什么？</h5><p>当有写线程时，则写线程独占同步状态，当没有写线程时只有读线程时，则多个读线程可以共享同步状态。读写锁就是为了实现这种效果而生。</p>
+<p>读写锁：分为读锁和写锁，多个读锁不互斥，读锁与写锁互斥，这是由jvm自己控制的，我们只要上好相应的锁即可。如果你的代码只读数据，可以很多人同时读，但不能同时写，那就上读锁；如果你的代码修改数据，只能有一个人在写，且不能同时读取，那就上写锁。总之，读的时候上读锁，写的时候上写锁！读写锁接口：<code>ReadWriteLock</code>，它的具体实现类为：<code>ReentrantReadWriteLock</code>。<br><a href="https://www.cnblogs.com/liang1101/p/6475555.html?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">《ReadWriteLock场景应用》</a>：在多线程的环境下，对同一份数据进行读写，会涉及到线程安全的问题。比如在一个线程读取数据的时候，另外一个线程在写数据，而导致前后数据的不一致性；一个线程在写数据的时候，另一个线程也在写，同样也会导致线程前后看到的数据的不一致性。这时候可以在读写方法中加入互斥锁，任何时候只能允许一个线程的一个读或写操作，而不允许其他线程的读或写操作，这样是可以解决这样以上的问题，但是效率却大打折扣了。因为在真实的业务场景中，一份数据，读取数据的操作次数通常高于写入数据的操作，而线程与线程间的读读操作是不涉及到线程安全的问题，没有必要加入互斥锁，只要在读-写，写-写期间上锁就行了。<a href="https://www.cnblogs.com/sheeva/p/6480116.html" target="_blank" rel="noopener">API调用请移步</a></p>
+<p>构造了一个线程安全的缓存，先创建一个<code>ReentrantReadWriteLock</code>对象，构造函数 <code>false</code> 代表是非公平的（非公平的含义和ReentrantLock相同）。然后通过<code>readLock</code>、<code>writeLock</code>方法分别获取读锁和写锁。在做读操作的时候，也就是<code>get</code>方法，我们要先获取读锁；在做写操作的时候，即put方法，我们要先获取写锁。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadWriteCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Object&gt; data = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ReadWriteLock lock = <span class="keyword">new</span> ReentrantReadWriteLock(<span class="keyword">false</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Lock rlock = lock.readLock();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Lock wlock = lock.writeLock();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        rlock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> data.get(key);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            rlock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">put</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        wlock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> data.put(key, value);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            wlock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="3、锁机制有什么用"><a href="#3、锁机制有什么用" class="headerlink" title="3、锁机制有什么用"></a>3、锁机制有什么用</h5><p>有些业务逻辑在执行过程中要求对数据进行排他性的访问，于是需要通过一些机制保证在此过程中数据被锁住不会被外界修改，这就是所谓的锁机制。</p>
+<h5 id="4、什么是乐观锁（Optimistic-Locking）？如何实现乐观锁？如何避免ABA问题"><a href="#4、什么是乐观锁（Optimistic-Locking）？如何实现乐观锁？如何避免ABA问题" class="headerlink" title="4、什么是乐观锁（Optimistic Locking）？如何实现乐观锁？如何避免ABA问题"></a>4、什么是乐观锁（Optimistic Locking）？如何实现乐观锁？如何避免ABA问题</h5><p>悲观锁(<code>Pessimistic Lock</code>), 顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+<p>乐观锁(<code>Optimistic Lock</code>), 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于<code>write_condition</code>机制的其实都是提供的乐观锁。</p>
+<h5 id="5、解释以下名词：重排序，自旋锁，偏向锁，轻量级锁，可重入锁，公平锁，非公平锁，乐观锁，悲观锁"><a href="#5、解释以下名词：重排序，自旋锁，偏向锁，轻量级锁，可重入锁，公平锁，非公平锁，乐观锁，悲观锁" class="headerlink" title="5、解释以下名词：重排序，自旋锁，偏向锁，轻量级锁，可重入锁，公平锁，非公平锁，乐观锁，悲观锁"></a>5、解释以下名词：重排序，自旋锁，偏向锁，轻量级锁，可重入锁，公平锁，非公平锁，乐观锁，悲观锁</h5><p><strong>重入锁（ReentrantLock）</strong>是一种递归无阻塞的同步机制。重入锁，也叫做递归锁，指的是同一线程 外层函数获得锁之后 ，内层递归函数仍然有获取该锁的代码，但不受影响。在JAVA环境下 <code>ReentrantLock</code> 和<code>synchronized</code>都是 可重入锁。</p>
+<p><strong>自旋锁</strong>，由于自旋锁使用者一般保持锁时间非常短，因此选择自旋而不是睡眠是非常必要的，自旋锁的效率远高于互斥锁。如何旋转呢？何为自旋锁，就是如果发现锁定了，不是睡眠等待，而是采用让当前线程不停地的在循环体内执行实现的，当循环的条件被其他线程改变时 才能进入临界区。</p>
+<p><strong>偏向锁(Biased Locking)</strong>是Java6引入的一项多线程优化，它会偏向于第一个访问锁的线程，如果在运行过程中，同步锁只有一个线程访问，不存在多线程争用的情况，则线程是不需要触发同步的，这种情况下，就会给线程加一个偏向锁。 如果在运行过程中，遇到了其他线程抢占锁，则持有偏向锁的线程会被挂起，JVM会消除它身上的偏向锁，将锁恢复到标准的轻量级锁。</p>
+<p><strong>轻量级锁</strong>是由偏向所升级来的，偏向锁运行在一个线程进入同步块的情况下，当第二个线程加入锁争用的时候，偏向锁就会升级为轻量级锁。</p>
+<p><strong>重入锁（ReentrantLock）</strong>是一种递归无阻塞的同步机制，也叫做递归锁，指的是同一线程 外层函数获得锁之后 ，内层递归函数仍然有获取该锁的代码，但不受影响。 在JAVA环境下 <code>ReentrantLock</code> 和<code>synchronized</code>都是 可重入锁。</p>
+<p><strong>公平锁</strong>，就是很公平，在并发环境中，每个线程在获取锁时会先查看此锁维护的等待队列，如果为空，或者当前线程线程是等待队列的第一个，就占有锁，否则就会加入到等待队列中，以后会按照FIFO的规则从队列中取到自己</p>
+<p><strong>非公平锁</strong>比较粗鲁，上来就直接尝试占有锁。在公平的锁上，线程按照他们发出请求的顺序获取锁，但在非公平锁上，则允许‘插队’：当一个线程请求非公平锁时，如果在发出请求的同时该锁变成可用状态，那么这个线程会跳过队列中所有的等待线程而获得锁。     非公平的ReentrantLock 并不提倡 插队行为，但是无法防止某个线程在合适的时候进行插队。</p>
+<h5 id="6、什么时候应该使用可重入锁？"><a href="#6、什么时候应该使用可重入锁？" class="headerlink" title="6、什么时候应该使用可重入锁？"></a>6、什么时候应该使用可重入锁？</h5><p>场景1：如果已加锁，则不再重复加锁。a、忽略重复加锁。b、用在界面交互时点击执行较长时间请求操作时，防止多次点击导致后台重复执行（忽略重复触发）。以上两种情况多用于进行非重要任务防止重复执行，（如：清除无用临时文件，检查某些资源的可用性，数据备份操作等）</p>
+<p>场景2：如果发现该操作已经在执行，则尝试等待一段时间，等待超时则不执行（尝试等待执行）这种其实属于场景2的改进，等待获得锁的操作有一个时间的限制，如果超时则放弃执行。用来防止由于资源处理不当长时间占用导致死锁情况（大家都在等待资源，导致线程队列溢出）。</p>
+<p>场景3：如果发现该操作已经加锁，则等待一个一个加锁（同步执行，类似<code>synchronized</code>）这种比较常见大家也都在用，主要是防止资源使用冲突，保证同一时间内只有一个操作可以使用该资源。但与synchronized的明显区别是性能优势（伴随jvm的优化这个差距在减小）。同时Lock有更灵活的锁定方式，公平锁与不公平锁，而synchronized永远是公平的。这种情况主要用于对资源的争抢（如：文件操作，同步消息发送，有状态的操作等）</p>
+<p>场景4：可中断锁。<code>synchronized</code>与<code>Lock</code>在默认情况下是不会响应中断(interrupt)操作，会继续执行完。<code>lockInterruptibly()</code>提供了可中断锁来解决此问题。（场景3的另一种改进，没有超时，只能等待中断或执行完毕）这种情况主要用于取消某些操作对资源的占用。如：（取消正在同步运行的操作，来防止不正常操作长时间占用造成的阻塞）</p>
+<h5 id="7、简述锁的等级方法锁、对象锁、类锁"><a href="#7、简述锁的等级方法锁、对象锁、类锁" class="headerlink" title="7、简述锁的等级方法锁、对象锁、类锁"></a>7、简述锁的等级方法锁、对象锁、类锁</h5><p>方法锁（<code>synchronized</code>修饰方法时）通过在方法声明中加入 <code>synchronized</code>关键字来声明 <code>synchronized</code>方法。<code>synchronized</code>方法控制对类成员变量的访问： 每个类实例对应一把锁，每个<code>synchronized</code>方法都必须获得调用该方法的类实例的锁方能执行，否则所属线程阻塞，方法一旦执行，就独占该锁，直到从该方法返回时才将锁释放，此后被阻塞的线程方能获得该锁，重新进入可执行状态。这种机制确保了同一时刻对于每一个类实例，其所有声明为 <code>synchronized</code>的成员函数中至多只有一个处于可执行状态，从而有效避免了类成员变量的访问冲突。</p>
+<p>对象锁（<code>synchronized</code>修饰方法或代码块）当一个对象中有<code>synchronized method</code>或<code>synchronized block</code>的时候调用此对象的同步方法或进入其同步区域时，就必须先获得对象锁。如果此对象的对象锁已被其他调用者占用，则需要等待此锁被释放。（方法锁也是对象锁）。java的所有对象都含有1个互斥锁，这个锁由JVM自动获取和释放。线程进入<code>synchronized</code>方法的时候获取该对象的锁，当然如果已经有线程获取了这个对象的锁，那么当前线程会等待；<code>synchronized</code>方法正常返回或者抛异常而终止，JVM会自动释放对象锁。这里也体现了用<code>synchronized</code>来加锁的1个好处，方法抛异常的时候，锁仍然可以由JVM来自动释放。　</p>
+<p>类锁(<code>synchronized</code>修饰静态的方法或代码块)，由于一个<code>class</code>不论被实例化多少次，其中的静态方法和静态变量在内存中都只有一份。所以，一旦一个静态的方法被申明为<code>synchronized</code>。此类所有的实例化对象在调用此方法，共用同一把锁，我们称之为类锁。对象锁是用来控制实例方法之间的同步，类锁是用来控制静态方法（或静态变量互斥体）之间的同步。类锁只是一个概念上的东西，并不是真实存在的，它只是用来帮助我们理解锁定实例方法和静态方法的区别的。java类可能会有很多个对象，但是只有1个<code>Class</code>对象，也就是说类的不同实例之间共享该类的<code>Class</code>对象。<code>Class</code>对象其实也仅仅是1个java对象，只不过有点特殊而已。由于每个java对象都有1个互斥锁，而类的静态方法是需要<code>Class</code>对象。所以所谓的类锁，不过是<code>Class</code>对象的锁而已。获取类的<code>Class</code>对象有好几种，最简单的就是［类名.class］的方式。</p>
+<h5 id="8、Java中活锁和死锁有什么区别？"><a href="#8、Java中活锁和死锁有什么区别？" class="headerlink" title="8、Java中活锁和死锁有什么区别？"></a>8、Java中活锁和死锁有什么区别？</h5><p>死锁：是指两个或两个以上的进程（或线程）在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。死锁发生的四个条件</p>
+<p>1、互斥条件：线程对资源的访问是排他性的，如果一个线程对占用了某资源，那么其他线程必须处于等待状态，直到资源被释放。</p>
+<p>2、请求和保持条件：线程T1至少已经保持了一个资源R1占用,但又提出对另一个资源R2请求，而此时，资源R2被其他线程T2占用，于是该线程T1也必须等待，但又对自己保持的资源R1不释放。</p>
+<p>3、不剥夺条件：线程已获得的资源，在未使用完之前，不能被其他线程剥夺，只能在使用完以后由自己释放。</p>
+<p>4、环路等待条件：在死锁发生时，必然存在一个“进程-资源环形链”，即：<code>{p0,p1,p2,...pn}</code>,进程p0（或线程）等待p1占用的资源，p1等待p2占用的资源，pn等待p0占用的资源。（最直观的理解是，p0等待p1占用的资源，而p1而在等待p0占用的资源，于是两个进程就相互等待）</p>
+<p>活锁：是指线程1可以使用资源，但它很礼貌，让其他线程先使用资源，线程2也可以使用资源，但它很绅士，也让其他线程先使用资源。这样你让我，我让你，最后两个线程都无法使用资源。</p>
+<h5 id="9、如何确保-N-个线程可以访问-N-个资源同时又不导致死锁？"><a href="#9、如何确保-N-个线程可以访问-N-个资源同时又不导致死锁？" class="headerlink" title="9、如何确保 N 个线程可以访问 N 个资源同时又不导致死锁？"></a>9、如何确保 N 个线程可以访问 N 个资源同时又不导致死锁？</h5><p>预防死锁，预先破坏产生死锁的四个条件。互斥不可能破坏，所以有如下3种方法：</p>
+<p>1.破坏，请求和保持条件1.1）进程等所有要请求的资源都空闲时才能申请资源，这种方法会使资源严重浪费（有些资源可能仅在运行初期或结束时才使用，甚至根本不使用）1.2）允许进程获取初期所需资源后，便开始运行，运行过程中再逐步释放自己占有的资源。比如有一个进程的任务是把数据复制到磁盘中再打印，前期只需要获得磁盘资源而不需要获得打印机资源，待复制完毕后再释放掉磁盘资源。这种方法比上一种好，会使资源利用率上升。</p>
+<p>2.破坏，不可抢占条件。这种方法代价大，实现复杂</p>
+<p>3.破坏，循坏等待条件。对各进程请求资源的顺序做一个规定，避免相互等待。这种方法对资源的利用率比前两种都高，但是前期要为设备指定序号，新设备加入会有一个问题，其次对用户编程也有限制</p>
+<h5 id="10、死锁与饥饿的区别？"><a href="#10、死锁与饥饿的区别？" class="headerlink" title="10、死锁与饥饿的区别？"></a>10、死锁与饥饿的区别？</h5><p>相同点：二者都是由于竞争资源而引起的。</p>
+<p>不同点：</p>
+<ul>
+<li>从进程状态考虑，死锁进程都处于等待状态，忙等待(处于运行或就绪状态)的进程并非处于等待状态，但却可能被饿死；</li>
+<li>死锁进程等待永远不会被释放的资源，饿死进程等待会被释放但却不会分配给自己的资源，表现为等待时限没有上界(排队等待或忙式等待)；</li>
+<li>死锁一定发生了循环等待，而饿死则不然。这也表明通过资源分配图可以检测死锁存在与否，但却不能检测是否有进程饿死；</li>
+<li>死锁一定涉及多个进程，而饥饿或被饿死的进程可能只有一个。</li>
+<li>在饥饿的情形下，系统中有至少一个进程能正常运行，只是饥饿进程得不到执行机会。而死锁则可能会最终使整个系统陷入死锁并崩溃<h5 id="11、怎么检测一个线程是否拥有锁？"><a href="#11、怎么检测一个线程是否拥有锁？" class="headerlink" title="11、怎么检测一个线程是否拥有锁？"></a>11、怎么检测一个线程是否拥有锁？</h5><code>java.lang.Thread</code>中有一个方法叫<code>holdsLock()</code>，它返回true如果当且仅当当前线程拥有某个具体对象的锁<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(o) &#123;</span><br><span class="line">                System.out.println(<span class="string">"child thread: holdLock: "</span> +</span><br><span class="line">                    Thread.holdsLock(o));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"main thread: holdLock: "</span> + Thread.holdsLock(o));</span><br><span class="line">    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main thread: holdLock: <span class="keyword">false</span></span><br><span class="line">child thread: holdLock: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<h5 id="12、如何实现分布式锁？"><a href="#12、如何实现分布式锁？" class="headerlink" title="12、如何实现分布式锁？"></a>12、如何实现分布式锁？</h5><p>基于数据库实现分布式锁<br>基于缓存（redis，memcached，tair）实现分布式锁<br>基于Zookeeper实现分布式锁<br>可以参考详情<a href="http://www.hollischuang.com/archives/1716" target="_blank" rel="noopener">《分布式锁的几种实现方式》</a> 、 <a href="https://www.cnblogs.com/rwxwsblog/p/6046034.html" target="_blank" rel="noopener">《分布式锁的3种方式》</a></p>
+<h5 id="13、有哪些无锁数据结构，他们实现的原理是什么？"><a href="#13、有哪些无锁数据结构，他们实现的原理是什么？" class="headerlink" title="13、有哪些无锁数据结构，他们实现的原理是什么？"></a>13、有哪些无锁数据结构，他们实现的原理是什么？</h5><p>java 1.5提供了一种无锁队列（<code>wait-free/lock-free</code>）<code>ConcurrentLinkedQueue</code>，可支持多个生产者多个消费者线程的环境：网上别人自己实现的一种<a href="http://aigo.iteye.com/blog/2292229" target="_blank" rel="noopener">无锁算法队列</a>，原理和jdk官方的<code>ConcurrentLinkedQueue</code>相似：通过<code>volatile</code>关键字来保证数据唯一性（注：java的volatile和c++的volatile关键字是两码事！），但是里面又用到atomic，感觉有点boost::lockfree::queue的风格，估计参考了boost的代码来编写这个java无锁队列。</p>
+<h5 id="14、Executors类是什么？-Executor和Executors的区别"><a href="#14、Executors类是什么？-Executor和Executors的区别" class="headerlink" title="14、Executors类是什么？ Executor和Executors的区别"></a>14、Executors类是什么？ Executor和Executors的区别</h5><p>正如上面所说，这三者均是 Executor 框架中的一部分。Java 开发者很有必要学习和理解他们，以便更高效的使用 Java 提供的不同类型的线程池。总结一下这三者间的区别，以便大家更好的理解：</p>
+<p><code>Executor</code>和 <code>ExecutorService</code> 这两个接口主要的区别是：<code>ExecutorService</code> 接口继承了<code>Executor</code> 接口，是<code>Executor</code>的子接口<br><code>Executor</code>和<code>ExecutorService</code> 第二个区别是：<code>Executor</code>接口定义了 <code>execute()</code>方法用来接收一个<code>Runnable</code>接口的对象，而 <code>ExecutorService</code>接口中的 <code>submit()</code>方法可以接受<code>Runnable</code>和<code>Callable</code>接口的对象。<br><code>Executor</code> 和 <code>ExecutorService</code> 接口第三个区别是<code>Executor</code>中的 <code>execute()</code>方法不返回任何结果，而 <code>ExecutorService</code>中的 <code>submit()</code>方法可以通过一个 <code>Future</code>对象返回运算结果。<br><code>Executor</code> 和 <code>ExecutorService</code> 接口第四个区别是除了允许客户端提交一个任务，<code>ExecutorService</code> 还提供用来控制线程池的方法。比如：调用 <code>shutDown()</code>方法终止线程池。可以通过 《Java Concurrency in Practice》 一书了解更多关于关闭线程池和如何处理 <code>pending</code> 的任务的知识。<br><code>Executors</code> 类提供工厂方法用来创建不同类型的线程池。比如: <code>newSingleThreadExecutor()</code> 创建一个只有一个线程的线程池，<code>newFixedThreadPool(int numOfThreads)</code>来创建固定线程数的线程池，<code>newCachedThreadPool()</code>可以根据需要创建新的线程，但如果已有线程是空闲的会重用已有线程。</p>
+<p>Executor    ExecutorService<br>Executor 是 Java 线程池的核心接口，用来并发执行提交的任务    ExecutorService 是 Executor 接口的扩展，提供了异步执行和关闭线程池的方法<br>提供execute()方法用来提交任务    提供submit()方法用来提交任务<br>execute()方法无返回值    submit()方法返回Future对象，可用来获取任务执行结果<br>不能取消任务    可以通过Future.cancel()取消pending中的任务<br>没有提供和关闭线程池有关的方法    提供了关闭线程池的方法<br><img src="http://upload-images.jianshu.io/upload_images/8926909-d2a25c310db90f5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="区别"></p>
+<h5 id="16、什么是Java线程转储-Thread-Dump-，如何得到它？"><a href="#16、什么是Java线程转储-Thread-Dump-，如何得到它？" class="headerlink" title="16、什么是Java线程转储(Thread Dump)，如何得到它？"></a>16、什么是Java线程转储(Thread Dump)，如何得到它？</h5><p>线程转储是一个JVM活动线程的列表，它对于分析系统瓶颈和死锁非常有用。<br>有很多方法可以获取线程转储——使用Profiler，Kill -3命令，jstack工具等等。我更喜欢jstack工具，因为它容易使用并且是JDK自带的。由于它是一个基于终端的工具，所以我们可以编写一些脚本去定时的产生线程转储以待分析。</p>
+<h5 id="17、如何在Java中获取线程堆栈？"><a href="#17、如何在Java中获取线程堆栈？" class="headerlink" title="17、如何在Java中获取线程堆栈？"></a>17、如何在Java中获取线程堆栈？</h5><p>Java虚拟机提供了线程转储（thread dump）的后门，通过这个后门可以把线程堆栈打印出来。通常我们将堆栈信息重定向到一个文件中，便于我们分析，由于信息量太大，很可能超出控制台缓冲区的最大行数限制造成信息丢失。这里介绍一个jdk自带的打印线程堆栈的工具，jstack用于打印出给定的Java进程ID或core file或远程调试服务的Java堆栈信息。（<a href="http://blog.csdn.net/weiweicao0429/article/details/53185999" target="_blank" rel="noopener">Java问题定位之Java线程堆栈分析</a>）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">示例：$jstack –l <span class="number">23561</span> &gt;&gt; xxx.dump</span><br><span class="line">命令 : $jstack [option] pid &gt;&gt; 文件</span><br></pre></td></tr></table></figure></p>
+<p>表示输出到文件尾部，实际运行中，往往一次dump的信息，还不足以确认问题，建议产生三次dump信息，如果每次dump都指向同一个问题，我们才确定问题的典型性。</p>
+<h5 id="18、说出-3-条在-Java-中使用线程的最佳实践"><a href="#18、说出-3-条在-Java-中使用线程的最佳实践" class="headerlink" title="18、说出 3 条在 Java 中使用线程的最佳实践"></a>18、说出 3 条在 Java 中使用线程的最佳实践</h5><p>给你的线程起个有意义的名字。这样可以方便找bug或追踪。<code>OrderProcessor, QuoteProcessor or TradeProcessor</code>这种名字比<code>Thread-1. Thread-2 and Thread-3</code>好多了，给线程起一个和它要完成的任务相关的名字，所有的主要框架甚至JDK都遵循这个最佳实践。</p>
+<p>避免锁定和缩小同步的范围锁花费的代价高昂且上下文切换更耗费时间空间，试试最低限度的使用同步和锁，缩小临界区。因此相对于同步方法我更喜欢同步块，它给我拥有对锁的绝对控制权。</p>
+<p>多用同步类少用wait和notify首先，<code>CountDownLatch, Semaphore, CyclicBarrier</code>和<code>Exchanger</code>这些同步类简化了编码操作，而用<code>wait</code>和<code>notify</code>很难实现对复杂控制流的控制。其次，这些类是由最好的企业编写和维护在后续的JDK中它们还会不断优化和完善，使用这些更高等级的同步工具你的程序可以不费吹灰之力获得优化。</p>
+<p>多用并发集合少用同步集合，这是另外一个容易遵循且受益巨大的最佳实践，并发集合比同步集合的可扩展性更好，所以在并发编程时使用并发集合效果更好。如果下一次你需要用到map，你应该首先想到用<code>ConcurrentHashMap</code>。</p>
+<h5 id="19、【情景开放题】"><a href="#19、【情景开放题】" class="headerlink" title="19、【情景开放题】"></a>19、【情景开放题】</h5><h5 id="实际项目中使用多线程举例。你在多线程环境中遇到的常见的问题是什么？你是怎么解决它的？"><a href="#实际项目中使用多线程举例。你在多线程环境中遇到的常见的问题是什么？你是怎么解决它的？" class="headerlink" title="实际项目中使用多线程举例。你在多线程环境中遇到的常见的问题是什么？你是怎么解决它的？"></a>实际项目中使用多线程举例。你在多线程环境中遇到的常见的问题是什么？你是怎么解决它的？</h5><h5 id="请说出与线程同步以及线程调度相关的方法"><a href="#请说出与线程同步以及线程调度相关的方法" class="headerlink" title="请说出与线程同步以及线程调度相关的方法"></a>请说出与线程同步以及线程调度相关的方法</h5><h5 id="程序中有3个-socket，需要多少个线程来处理"><a href="#程序中有3个-socket，需要多少个线程来处理" class="headerlink" title="程序中有3个 socket，需要多少个线程来处理"></a>程序中有3个 socket，需要多少个线程来处理</h5><h5 id="假如有一个第三方接口，有很多个线程去调用获取数据，现在规定每秒钟最多有-10-个线程同时调用它，如何做到"><a href="#假如有一个第三方接口，有很多个线程去调用获取数据，现在规定每秒钟最多有-10-个线程同时调用它，如何做到" class="headerlink" title="假如有一个第三方接口，有很多个线程去调用获取数据，现在规定每秒钟最多有 10 个线程同时调用它，如何做到"></a>假如有一个第三方接口，有很多个线程去调用获取数据，现在规定每秒钟最多有 10 个线程同时调用它，如何做到</h5><h5 id="如何在-Windows-和-Linux-上查找哪个线程使用的-CPU-时间最长"><a href="#如何在-Windows-和-Linux-上查找哪个线程使用的-CPU-时间最长" class="headerlink" title="如何在 Windows 和 Linux 上查找哪个线程使用的 CPU 时间最长"></a>如何在 Windows 和 Linux 上查找哪个线程使用的 CPU 时间最长</h5><h5 id="如何确保-main-方法所在的线程是-Java-程序最后结束的线程"><a href="#如何确保-main-方法所在的线程是-Java-程序最后结束的线程" class="headerlink" title="如何确保 main() 方法所在的线程是 Java 程序最后结束的线程"></a>如何确保 main() 方法所在的线程是 Java 程序最后结束的线程</h5><h5 id="非常多个线程（可能是不同机器），相互之间需要等待协调才能完成某种工作，问怎么设计这种协调方案"><a href="#非常多个线程（可能是不同机器），相互之间需要等待协调才能完成某种工作，问怎么设计这种协调方案" class="headerlink" title="非常多个线程（可能是不同机器），相互之间需要等待协调才能完成某种工作，问怎么设计这种协调方案"></a>非常多个线程（可能是不同机器），相互之间需要等待协调才能完成某种工作，问怎么设计这种协调方案</h5><h5 id="你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它"><a href="#你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它" class="headerlink" title="你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它"></a>你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它</h5>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Tison
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tisonkong.github.io/github.io/2018/05/20/java 多线程总结篇4——锁机制/" title="多线程从入门到放弃【4】">https://tisonkong.github.io/github.io/2018/05/20/java 多线程总结篇4——锁机制/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Interview/" rel="tag"><i class="fa fa-tag"></i> Interview</a>
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/多线程/" rel="tag"><i class="fa fa-tag"></i> 多线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/java 多线程总结篇3之——生命周期和线程同步/" rel="next" title="多线程从入门到放弃【3】">
+                <i class="fa fa-chevron-left"></i> 多线程从入门到放弃【3】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/java基础之IO流（File篇）/" rel="prev" title="IO里的老熟人File类">
+                IO里的老熟人File类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYyNi8xMDE4MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/cloud.jpg"
+                alt="Tison" />
+            
+              <p class="site-author-name" itemprop="name">Tison</p>
+              <p class="site-description motion-element" itemprop="description">learn conscientiously，live beautifully, dream passionately, love completely</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/tisonkong" target="_blank" title="GitHub">
+                      GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gongdishao@foxmail.com" target="_blank" title="E-Mail">
+                      E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/abcf0e8f851a" target="_blank" title="简书">
+                      简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/139549170/" target="_blank" title="豆瓣">
+                      豆瓣</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、Java-Concurrency-API-中的-Lock接口是什么？对比同步它有什么优势？"><span class="nav-number">1.</span> <span class="nav-text">1、Java Concurrency API 中的 Lock接口是什么？对比同步它有什么优势？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、ReadWriteLock是什么？"><span class="nav-number">2.</span> <span class="nav-text">2、ReadWriteLock是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、锁机制有什么用"><span class="nav-number">3.</span> <span class="nav-text">3、锁机制有什么用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、什么是乐观锁（Optimistic-Locking）？如何实现乐观锁？如何避免ABA问题"><span class="nav-number">4.</span> <span class="nav-text">4、什么是乐观锁（Optimistic Locking）？如何实现乐观锁？如何避免ABA问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、解释以下名词：重排序，自旋锁，偏向锁，轻量级锁，可重入锁，公平锁，非公平锁，乐观锁，悲观锁"><span class="nav-number">5.</span> <span class="nav-text">5、解释以下名词：重排序，自旋锁，偏向锁，轻量级锁，可重入锁，公平锁，非公平锁，乐观锁，悲观锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、什么时候应该使用可重入锁？"><span class="nav-number">6.</span> <span class="nav-text">6、什么时候应该使用可重入锁？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、简述锁的等级方法锁、对象锁、类锁"><span class="nav-number">7.</span> <span class="nav-text">7、简述锁的等级方法锁、对象锁、类锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、Java中活锁和死锁有什么区别？"><span class="nav-number">8.</span> <span class="nav-text">8、Java中活锁和死锁有什么区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9、如何确保-N-个线程可以访问-N-个资源同时又不导致死锁？"><span class="nav-number">9.</span> <span class="nav-text">9、如何确保 N 个线程可以访问 N 个资源同时又不导致死锁？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10、死锁与饥饿的区别？"><span class="nav-number">10.</span> <span class="nav-text">10、死锁与饥饿的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11、怎么检测一个线程是否拥有锁？"><span class="nav-number">11.</span> <span class="nav-text">11、怎么检测一个线程是否拥有锁？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12、如何实现分布式锁？"><span class="nav-number">12.</span> <span class="nav-text">12、如何实现分布式锁？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13、有哪些无锁数据结构，他们实现的原理是什么？"><span class="nav-number">13.</span> <span class="nav-text">13、有哪些无锁数据结构，他们实现的原理是什么？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14、Executors类是什么？-Executor和Executors的区别"><span class="nav-number">14.</span> <span class="nav-text">14、Executors类是什么？ Executor和Executors的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16、什么是Java线程转储-Thread-Dump-，如何得到它？"><span class="nav-number">15.</span> <span class="nav-text">16、什么是Java线程转储(Thread Dump)，如何得到它？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17、如何在Java中获取线程堆栈？"><span class="nav-number">16.</span> <span class="nav-text">17、如何在Java中获取线程堆栈？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18、说出-3-条在-Java-中使用线程的最佳实践"><span class="nav-number">17.</span> <span class="nav-text">18、说出 3 条在 Java 中使用线程的最佳实践</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19、【情景开放题】"><span class="nav-number">18.</span> <span class="nav-text">19、【情景开放题】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实际项目中使用多线程举例。你在多线程环境中遇到的常见的问题是什么？你是怎么解决它的？"><span class="nav-number">19.</span> <span class="nav-text">实际项目中使用多线程举例。你在多线程环境中遇到的常见的问题是什么？你是怎么解决它的？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#请说出与线程同步以及线程调度相关的方法"><span class="nav-number">20.</span> <span class="nav-text">请说出与线程同步以及线程调度相关的方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#程序中有3个-socket，需要多少个线程来处理"><span class="nav-number">21.</span> <span class="nav-text">程序中有3个 socket，需要多少个线程来处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#假如有一个第三方接口，有很多个线程去调用获取数据，现在规定每秒钟最多有-10-个线程同时调用它，如何做到"><span class="nav-number">22.</span> <span class="nav-text">假如有一个第三方接口，有很多个线程去调用获取数据，现在规定每秒钟最多有 10 个线程同时调用它，如何做到</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何在-Windows-和-Linux-上查找哪个线程使用的-CPU-时间最长"><span class="nav-number">23.</span> <span class="nav-text">如何在 Windows 和 Linux 上查找哪个线程使用的 CPU 时间最长</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何确保-main-方法所在的线程是-Java-程序最后结束的线程"><span class="nav-number">24.</span> <span class="nav-text">如何确保 main() 方法所在的线程是 Java 程序最后结束的线程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#非常多个线程（可能是不同机器），相互之间需要等待协调才能完成某种工作，问怎么设计这种协调方案"><span class="nav-number">25.</span> <span class="nav-text">非常多个线程（可能是不同机器），相互之间需要等待协调才能完成某种工作，问怎么设计这种协调方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它"><span class="nav-number">26.</span> <span class="nav-text">你需要实现一个高效的缓存，它允许多个用户读，但只允许一个用户写，以此来保持它的完整性，你会怎样去实现它</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tison</span>
+
+  
+</div>
+
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.mist</a> v5.1.4</div>
+-->
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共65.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/love.js"></script>
