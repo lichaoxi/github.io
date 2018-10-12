@@ -110,7 +110,7 @@
 
 
 
-  <meta name="keywords" content="Interview,java,IO," />
+  <meta name="keywords" content="HTTP协议,网络," />
 
 
 
@@ -123,18 +123,23 @@
 
 
 
-<meta name="description" content="File类描述的是一个文件或文件夹。（文件夹也可以称为目录），该类的出现是对文件系统的中的文件以及文件夹进行对象的封装。可以通过对象的思想来操作文件以及文件夹，通过该对象的方法得到文件或文件夹的信息方便了对文件与文件夹的属性信息进行操作。">
-<meta name="keywords" content="Interview,java,IO">
+<meta name="description" content="一、Http协议HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。">
+<meta name="keywords" content="HTTP协议,网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IO里的老熟人File类">
-<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/05/20/java基础之IO流（File篇）/index.html">
+<meta property="og:title" content="简单说说HTTP协议">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/index.html">
 <meta property="og:site_name" content="YitaiCloud">
-<meta property="og:description" content="File类描述的是一个文件或文件夹。（文件夹也可以称为目录），该类的出现是对文件系统的中的文件以及文件夹进行对象的封装。可以通过对象的思想来操作文件以及文件夹，通过该对象的方法得到文件或文件夹的信息方便了对文件与文件夹的属性信息进行操作。">
+<meta property="og:description" content="一、Http协议HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-20T14:35:08.028Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-55c27c7d4394a5a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-9f9e6a0cb61243cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-b5c977f5065f41a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-cfd0517c7223404b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-12T13:14:49.202Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IO里的老熟人File类">
-<meta name="twitter:description" content="File类描述的是一个文件或文件夹。（文件夹也可以称为目录），该类的出现是对文件系统的中的文件以及文件夹进行对象的封装。可以通过对象的思想来操作文件以及文件夹，通过该对象的方法得到文件或文件夹的信息方便了对文件与文件夹的属性信息进行操作。">
+<meta name="twitter:title" content="简单说说HTTP协议">
+<meta name="twitter:description" content="一、Http协议HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8926909-55c27c7d4394a5a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -164,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/05/20/java基础之IO流（File篇）/"/>
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/"/>
 
 
 
 
 
-  <title>IO里的老熟人File类 | YitaiCloud</title>
+  <title>简单说说HTTP协议 | YitaiCloud</title>
   
 
 
@@ -331,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/05/20/java基础之IO流（File篇）/">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tison">
@@ -348,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IO里的老熟人File类</h1>
+          <h1 class="post-title" itemprop="name headline">简单说说HTTP协议</h1>
         
 
         <div class="post-meta">
@@ -360,8 +365,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T22:35:08+08:00">
-                2018-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T21:11:46+08:00">
+                2018-10-12
               </time>
             
 
@@ -383,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-IO/" itemprop="url" rel="index">
-                    <span itemprop="name">Java IO</span>
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
                   </a>
                 </span>
 
@@ -414,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,440
+                  3,393
                 </span>
               
 
@@ -430,7 +435,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  12
                 </span>
               
             </div>
@@ -451,26 +456,62 @@
       
 
       
-        <p>File类描述的是一个文件或文件夹。（文件夹也可以称为目录），该类的出现是对文件系统的中的文件以及文件夹进行对象的封装。可以通过对象的思想来操作文件以及文件夹，通过该对象的方法得到文件或文件夹的信息方便了对文件与文件夹的属性信息进行操作。<a id="more"></a>文件包含很多的信息:如文件名、创建修改时间、大小、可读可写属性等。</p>
-<h5 id="1-基本API"><a href="#1-基本API" class="headerlink" title="1.基本API"></a>1.基本API</h5><p>（1）.通过将给定路径来创建一个新File实例。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> File(String pathname);</span><br></pre></td></tr></table></figure></p>
-<p>（2）.根据parent路径名字符串和child路径名创建一个新File实例。parent是指上级目录的路径，完整的路径为parent+child.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> File(String parent, String child);</span><br></pre></td></tr></table></figure></p>
-<p>（3）.根据parent抽象路径名和child路径名创建一个新File实例。 parent是指上级目录的路径，完整的路径为parent.getPath()+child.<br>说明：如果指定的路径不存在（没有这个文件或是文件夹），不会抛异常，这时file.exists()返回false。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> File(File parent, String child);</span><br></pre></td></tr></table></figure></p>
-<p><strong><em>说明：如果指定的路径不存在（没有这个文件或是文件夹），不会抛异常，这时file.exists()返回false。</em></strong></p>
-<p>（4）创建：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">createNewFile()   <span class="comment">//在指定位置创建一个空文件，成功就返回true，如果已存在就不创建然后返回false</span></span><br><span class="line"></span><br><span class="line">mkdir()           <span class="comment">//在指定位置创建目录，这只会创建最后一级目录，如果上级目录不存在就抛异常。</span></span><br><span class="line"></span><br><span class="line">mkdirs()          <span class="comment">//在指定位置创建目录，这会创建路径中所有不存在的目录。</span></span><br><span class="line"></span><br><span class="line">renameTo(File dest)  <span class="comment">//重命名文件或文件夹，也可以操作非空的文件夹，文件不同时相当于文件的剪切,剪切时候不能操作非空的文件夹。</span></span><br><span class="line">                     <span class="comment">//移动/重命名成功则返回true，失败则返回false。</span></span><br></pre></td></tr></table></figure></p>
-<p>（5）.删除：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">delete()</span><br><span class="line"><span class="comment">//删除文件或一个空文件夹，如果是文件夹且不为空，则不能删除，成功返回true，失败返回false。</span></span><br><span class="line"></span><br><span class="line">deleteOnExit()</span><br><span class="line"><span class="comment">//在虚拟机终止时，请求删除此抽象路径名表示的文件或目录，保证程序异常时创建的临时文件也可以被删除</span></span><br></pre></td></tr></table></figure></p>
-<p>（6）.判断：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">exists()         <span class="comment">//文件或文件夹是否存在。</span></span><br><span class="line"></span><br><span class="line">isFile()          <span class="comment">//是否是一个文件，如果不存在，则始终为false。</span></span><br><span class="line"></span><br><span class="line">isDirectory()     <span class="comment">//是否是一个目录，如果不存在，则始终为false。</span></span><br><span class="line"></span><br><span class="line">isHidden()        <span class="comment">//是否是一个隐藏的文件或是否是隐藏的目录。</span></span><br><span class="line"></span><br><span class="line">isAbsolute()      <span class="comment">//测试此抽象路径名是否为绝对路径名。</span></span><br></pre></td></tr></table></figure></p>
-<p>（7）.获取：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">getName()    <span class="comment">//获取文件或文件夹的名称，不包含上级路径。</span></span><br><span class="line"></span><br><span class="line">getPath()    <span class="comment">//返回绝对路径，可以是相对路径，但是目录要指定</span></span><br><span class="line"></span><br><span class="line">getAbsolutePath()    <span class="comment">//获取文件的绝对路径，与文件是否存在没关系</span></span><br><span class="line"></span><br><span class="line">length()    <span class="comment">// 获取文件的大小（字节数），如果文件不存在则返回0L，如果是文件夹也返回0L。</span></span><br><span class="line"></span><br><span class="line">getParent()    <span class="comment">//返回此抽象路径名父目录的路径名字符串；如果此路径名没有指定父目录，则返回null。</span></span><br><span class="line"></span><br><span class="line">lastModified()    <span class="comment">//获取最后一次被修改的时间。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">staic File[] listRoots()    <span class="comment">//列出所有的根目录（Window中就是所有系统的盘符）</span></span><br><span class="line"></span><br><span class="line">list()    <span class="comment">//返回目录下的文件或者目录名，包含隐藏文件。对于文件这样操作会返回null。</span></span><br><span class="line"></span><br><span class="line">list(FilenameFilter filter)    <span class="comment">//返回指定当前目录中符合过滤条件的子文件或子目录。对于文件这样操作会返回null。</span></span><br><span class="line"></span><br><span class="line">listFiles()    <span class="comment">//返回目录下的文件或者目录对象（File类实例），包含隐藏文件。对于文件这样操作会返回null。</span></span><br><span class="line"></span><br><span class="line">listFiles(FilenameFilter filter)    <span class="comment">//返回指定当前目录中符合过滤条件的子文件或子目录。对于文件这样操作会返回null。</span></span><br></pre></td></tr></table></figure></p>
+        <h4 id="一、Http协议"><a href="#一、Http协议" class="headerlink" title="一、Http协议"></a>一、Http协议</h4><p>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。<br><a id="more"></a><br>HTTP是一个应用层协议，基于请求与响应模式的、无状态的、应用层的协议，常基于TCP的连接方式。HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息URL，全称是<code>UniformResourceLocator</code>, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。<br><img src="http://upload-images.jianshu.io/upload_images/8926909-55c27c7d4394a5a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请求响应模型"><br>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。以下是 HTTP 请求/响应的步骤：</p>
+<h6 id="1、客户端连接到Web服务器"><a href="#1、客户端连接到Web服务器" class="headerlink" title="1、客户端连接到Web服务器"></a>1、客户端连接到Web服务器</h6><p>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="https://www.jianshu.com/u/abcf0e8f851a" target="_blank" rel="noopener">https://www.jianshu.com/yitaicloud</a>。</p>
+<h6 id="2、发送HTTP请求"><a href="#2、发送HTTP请求" class="headerlink" title="2、发送HTTP请求"></a>2、发送HTTP请求</h6><p>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</p>
+<h6 id="3、服务器接受请求并返回HTTP响应"><a href="#3、服务器接受请求并返回HTTP响应" class="headerlink" title="3、服务器接受请求并返回HTTP响应"></a>3、服务器接受请求并返回HTTP响应</h6><p>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p>
+<h6 id="4、释放连接TCP连接"><a href="#4、释放连接TCP连接" class="headerlink" title="4、释放连接TCP连接"></a>4、释放连接<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a></h6><p>若connection 模式为close，则服务器主动关闭<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>，客户端被动关闭连接，释放<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</p>
+<h6 id="5、客户端浏览器解析HTML内容"><a href="#5、客户端浏览器解析HTML内容" class="headerlink" title="5、客户端浏览器解析HTML内容"></a>5、客户端浏览器解析HTML内容</h6><p>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p>
+<p>例如：在浏览器地址栏键入URL，按下回车之后会经历以下流程：<br>1、浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;<br>2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>;<br>3、浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为 <a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP 三次握手</a>的第三个报文的数据发送给服务器;<br>4、服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;<br>5、释放 <a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>;<br>6、浏览器将该 html 文本并显示内容;</p>
 <blockquote>
-<p>路径问题</p>
-<ul>
-<li>对于UNIX平台，绝对路径名的前缀是”/“。相对路径名没有前缀。</li>
-<li>对于Windows平台，绝对路径名的前缀由驱动器号和一个”:”组成，例”c:\…”。相对路径没有盘符前缀。<br>更专业的做法是使用<strong>File.separatorChar</strong>或者<strong>File.separator</strong>（前者为char，后者为String），这个值就会根据系统得到的相应的分割符。</li>
-</ul>
+<p><a href="http://www.cnblogs.com/ranyonsue/p/5984001.html" target="_blank" rel="noopener">《关于HTTP协议，一篇就够了》</a></p>
 </blockquote>
-<h4 id="2-常见File类面试题"><a href="#2-常见File类面试题" class="headerlink" title="2.常见File类面试题"></a>2.常见File类面试题</h4><p>1、File类型中定义了什么方法来创建一级目录<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdirs() <span class="comment">//在指定位置创建目录，这会创建路径中所有不存在的目录。</span></span><br></pre></td></tr></table></figure></p>
-<p>2、File类型中定义了什么方法来判断一个文件是否存在<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exists()         <span class="comment">//文件或文件夹是否存在。</span></span><br></pre></td></tr></table></figure></p>
-<p>3、如何用Java代码列出一个目录下所有的文件？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只查询当前目录</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        File f = <span class="keyword">new</span> File(<span class="string">"d:"</span>);</span><br><span class="line">        <span class="keyword">for</span>(File temp : f.listFiles()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.isFile()) &#123;</span><br><span class="line">                System.out.println(temp.getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果需要对文件夹继续展开</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        showDirectory(<span class="keyword">new</span> File(<span class="string">"d:\\file"</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showDirectory</span><span class="params">(File f)</span> </span>&#123;</span><br><span class="line">        _walkDirectory(f, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">_walkDirectory</span><span class="params">(File f, <span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(f.isDirectory()) &#123;</span><br><span class="line">            <span class="keyword">for</span>(File temp : f.listFiles()) &#123;</span><br><span class="line">                _walkDirectory(temp, level + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; level - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                System.out.print(<span class="string">"\t"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(f.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>在Java 7中可以使用NIO.2的API来做同样的事情，代码如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       Path initPath = Paths.get(<span class="string">"/Users/Hao/Downloads"</span>);</span><br><span class="line">       Files.walkFileTree(initPath, <span class="keyword">new</span> SimpleFileVisitor&lt;Path&gt;() &#123;</span><br><span class="line"></span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> FileVisitResult <span class="title">visitFile</span><span class="params">(Path file, BasicFileAttributes attrs)</span></span></span><br><span class="line"><span class="function">                   <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">               System.out.println(file.getFileName().toString());</span><br><span class="line">               <span class="keyword">return</span> FileVisitResult.CONTINUE;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://blog.csdn.net/zhuolou1208/article/details/78106420" target="_blank" rel="noopener">如果TCP有点生疏了，请戳下这里</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8926909-9f9e6a0cb61243cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Http协议在TCP/IP协议栈中位置"></p>
+<h5 id="1-常用的HTTP方法有哪些？"><a href="#1-常用的HTTP方法有哪些？" class="headerlink" title="1.常用的HTTP方法有哪些？"></a>1.常用的HTTP方法有哪些？</h5><p>GET： 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器。<br>POST：用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。<br>PUT： 传输文件，报文主体中包含文件内容，保存到对应URI位置。<br>DELETE：删除文件，与PUT方法相反，删除对应URI位置的文件。<br>HEAD： 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。<br>OPTIONS：查询相应URI支持的HTTP方法。</p>
+<h5 id="2-GET方法与POST方法的区别"><a href="#2-GET方法与POST方法的区别" class="headerlink" title="2.GET方法与POST方法的区别"></a>2.GET方法与POST方法的区别</h5><p><strong>区别一：</strong><br>get重点在从服务器上获取资源，post重点在向服务器发送数据；<br><strong>区别二：</strong></p>
+<ul>
+<li>get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如<a href="http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；" target="_blank" rel="noopener">http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；</a></li>
+<li>post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</li>
+</ul>
+<p><strong>区别三：</strong><br>Get传输的数据量小，因为受URL长度限制，但效率较高；<br>Post可以传输大量数据，所以上传文件时只能用Post方式；<br><strong>区别四：</strong><br>get是不安全的，因为URL是可见的，可能会泄露私密信息，如密码等(页面可以被缓存，或者获得历史访问记录)；<br>post较get安全性较高；<br><strong>区别五：</strong><br>get方式只能支持ASCII字符，向服务器传的中文字符可能会乱码。<br>post支持标准字符集，可以正确传递中文字符。</p>
+<h5 id="3-HTTP请求报文与响应报文格式"><a href="#3-HTTP请求报文与响应报文格式" class="headerlink" title="3.HTTP请求报文与响应报文格式"></a>3.HTTP请求报文与响应报文格式</h5><p>请求报文包含三部分：<br>a、请求行：包含请求方法、URI、HTTP版本信息<br>b、请求首部字段<br>c、请求内容实体<br>响应报文包含三部分：<br>a、状态行：包含HTTP版本、状态码、状态码的原因短语<br>b、响应首部字段<br>c、响应内容实体</p>
+<blockquote>
+<p><strong>返回的状态</strong><br>1xx：指示信息–表示请求已接收，继续处理<br>2xx：成功–表示请求已被成功接收、理解、接受<br>3xx：重定向–要完成请求必须进行更进一步的操作<br>4xx：客户端错误–请求有语法错误或请求无法实现<br>5xx：服务器端错误–服务器未能实现合法的请求</p>
+<p><strong>200：请求被正常处理</strong><br>204：请求被受理但没有资源可以返回<br>206：客户端只是请求资源的一部分，服务器只对请求的部分资源执行GET方法，相应报文中通过Content-Range指定范围的资源。<br>301：永久性重定向<br><strong>302：临时重定向</strong><br>303：与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上<br>304：发送附带条件的请求时，条件不满足时返回，与重定向无关<br>307：临时重定向，与302类似，只是强制要求使用POST方法<br>400：请求报文语法有误，服务器无法识别<br>401：请求需要认证<br>403：请求的对应资源禁止被访问<br><strong>404：服务器无法找到对应资源</strong><br><strong>500：服务器内部错误</strong><br>503：服务器正忙</p>
+</blockquote>
+<h5 id="4-常见HTTP首部字段"><a href="#4-常见HTTP首部字段" class="headerlink" title="4.常见HTTP首部字段"></a>4.常见HTTP首部字段</h5><p><img src="http://upload-images.jianshu.io/upload_images/8926909-b5c977f5065f41a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Http请求截图"></p>
+<p>a、通用首部字段（请求报文与响应报文都会使用的首部字段）<br>Date：创建报文时间<br>Connection：连接的管理<br>Cache-Control：缓存的控制<br>Transfer-Encoding：报文主体的传输编码方式</p>
+<p>b、请求首部字段（请求报文会使用的首部字段）<br>Host：请求资源所在服务器<br>Accept：可处理的媒体类型<br>Accept-Charset：可接收的字符集<br>Accept-Encoding：可接受的内容编码<br>Accept-Language：可接受的自然语言</p>
+<p>c、响应首部字段（响应报文会使用的首部字段）<br>Accept-Ranges：可接受的字节范围<br>Location：令客户端重新定向到的URI<br>Server：HTTP服务器的安装信息</p>
+<p>d、实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）<br>Allow：资源可支持的HTTP方法<br>Content-Type：实体主类的类型<br>Content-Encoding：实体主体适用的编码方式<br>Content-Language：实体主体的自然语言<br>Content-Length：实体主体的的字节数<br>Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</p>
+<h5 id="5-HTTP1-1版本新特性"><a href="#5-HTTP1-1版本新特性" class="headerlink" title="5.HTTP1.1版本新特性"></a>5.HTTP1.1版本新特性</h5><p>先上答案，然后再后面详细解释：<br>a、默认持久连接，节省通信量，只要客户端服务端任意一端没有明确提出断开TCP连接，就一直保持连接，可以发送多次HTTP请求<br>b、管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应<br>c、断点续传原理</p>
+<p>HTTP 1.1支持持久连接，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接。HTTP 1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。基于HTTP 1.1协议的客户机与服务器的信息交换过程。<br><img src="http://upload-images.jianshu.io/upload_images/8926909-cfd0517c7223404b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Http1.1工作"></p>
+<blockquote>
+<p><a href="http://blog.csdn.net/elifefly/article/details/3964766/" target="_blank" rel="noopener">【HTTP 1.1与HTTP 1.0的比较HTTP 1.1与HTTP 1.0的比较】</a></p>
+</blockquote>
+<h5 id="6-HTTP的缺点与HTTPS"><a href="#6-HTTP的缺点与HTTPS" class="headerlink" title="6.HTTP的缺点与HTTPS"></a>6.HTTP的缺点与HTTPS</h5><p>a、通信使用明文不加密，内容可能被窃听<br>b、不验证通信方身份，可能遭到伪装<br>c、无法验证报文完整性，可能被篡改<br>HTTPS就是HTTP加上加密处理（一般是SSL安全通信线路）+认证+完整性保护</p>
+<h5 id="7-HTTP优化"><a href="#7-HTTP优化" class="headerlink" title="7.HTTP优化"></a>7.HTTP优化</h5><p>利用负载均衡优化和加速HTTP应用<br>利用HTTP Cache来优化网站</p>
+<p>补充一点<strong>Cache</strong>的细节：<br>缓存是一个到处都存在的用空间换时间的例子。通过使用多余的空间，我们能够获取更快的速度。用户在浏览网站的时候，浏览器能够在本地保存网站中的图片或者其他文件的副本，这样用户再次访问该网站的时候，浏览器就不用再下载全部的文件，减少了下载量意味着提高了页面加载的速度。<br>缓存非常有用，但是也带来了一定的缺陷。当我们的网站发生了更新的时候，比如说Logo换了，浏览器本地仍保存着旧版本的Logo，那么浏览器如何来确定使用本地文件还是使用服务器上的新文件？下面来介绍几种判断的方法。</p>
+<ul>
+<li>Caching Method 1：Last-Modified<br>服务器为了通知浏览器当前文件的版本，会发送一个上次修改时间的标签，例如：<br>Last-modified: Fri, 16 Mar 2007 04:00:25 GMT</li>
+<li>Caching Method 2: ETag<br>通常情况下，通过修改时间来比较文件是可行的。但是在一些特殊情况，例如服务器的时钟发生了错误，服务器时钟进行修改，夏时制DST到来后服务器时间没有及时更新，这些都会引起通过修改时间比较文件版本的问题。<br>ETag可以用来解决这种问题。ETag是一个文件的唯一标志符。就像一个哈希或者指纹，每个文件都有一个单独的标志，只要这个文件发生了改变，这个标志就会发生变化。如同 Last-modified 一样，ETag 解决了文件版本比较的问题。只不过 ETag 的级别比 Last-Modified 高一些。</li>
+<li>Caching Method 3：Expires<br>缓存一个文件，并且与服务器确认版本的方式非常好，但是仍有一个缺点，我们必须连接服务器。每次使用前都进行一次比较，这种方法很安全，但还不是最好的。我们可以使用 Expiration Date 来减少这种请求。</li>
+<li>Caching Method 4：Max-age<br>Expires的方法很好，但是我们每次都得算一个精确的时间。max-age 标签可以让我们更加容易的处理过期时间。我们只需要说，这份资料你只能用一个星期就可以了。<blockquote>
+<p><a href="http://www.cnblogs.com/cocowool/archive/2011/08/22/2149929.html" target="_blank" rel="noopener">【利用HTTP Cache来优化网站】</a></p>
+</blockquote>
+</li>
+</ul>
+<h5 id="8-跨域问题"><a href="#8-跨域问题" class="headerlink" title="8.跨域问题"></a>8.跨域问题</h5><p>浏览器的同源策略会导致跨域，这里同源策略又分为以下两种</p>
+<ul>
+<li>DOM同源策略：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的iframe是限制互相访问的。</li>
+<li>XmlHttpRequest同源策略：禁止使用XHR对象向不同源的服务器地址发起HTTP请求。</li>
+</ul>
+<p>只要协议、域名、端口有任何一个不同，都被当作是不同的域，之间的请求就是跨域操作。<br>要解决跨域问题可以参考以下文章：</p>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/28562290" target="_blank" rel="noopener">《跨域的那些事儿》</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">《跨域资源共享 CORS 详解》</a> 阮一峰大神的精品</p>
+</blockquote>
+<p>另外玉刚写了一篇不错的，角度是站在前端来看的<br><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1534170599&amp;ver=1058&amp;signature=NRB3iKd0Se5un2PbMTA2IjwRKl56ROP2rapEPAUXnW*zwI0itn4bonQ4ieM*-qxl0nLLyYQYkCkMrcpB5Bl1j8ujt6spFS3BEPfdIXVZvx5o6LXKHjDi74Zu6Mn2xsvB&amp;new=1" target="_blank" rel="noopener">《HTTP 必知必会的那些》</a></p>
 
       
     </div>
@@ -491,7 +532,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tisonkong.github.io/github.io/2018/05/20/java基础之IO流（File篇）/" title="IO里的老熟人File类">https://tisonkong.github.io/github.io/2018/05/20/java基础之IO流（File篇）/</a>
+    <a href="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/" title="简单说说HTTP协议">https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -506,11 +547,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Interview/" rel="tag"><i class="fa fa-tag"></i> Interview</a>
+            <a href="/tags/HTTP协议/" rel="tag"><i class="fa fa-tag"></i> HTTP协议</a>
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
-          
-            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
           
         </div>
       
@@ -523,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/20/java 多线程总结篇4——锁机制/" rel="next" title="多线程从入门到放弃【4】">
-                <i class="fa fa-chevron-left"></i> 多线程从入门到放弃【4】
+              <a href="/2018/05/20/一致性哈希算法原理和实现/" rel="next" title="一致性哈希算法原理和实现">
+                <i class="fa fa-chevron-left"></i> 一致性哈希算法原理和实现
               </a>
             
           </div>
@@ -532,10 +571,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/20/java基础之IO流（设计模式）/" rel="prev" title="结合IO类讲讲装饰者模式">
-                结合IO类讲讲装饰者模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -731,7 +766,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-基本API"><span class="nav-number">1.</span> <span class="nav-text">1.基本API</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-常见File类面试题"><span class="nav-number"></span> <span class="nav-text">2.常见File类面试题</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、Http协议"><span class="nav-number">1.</span> <span class="nav-text">一、Http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、客户端连接到Web服务器"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、客户端连接到Web服务器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、发送HTTP请求"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、发送HTTP请求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、服务器接受请求并返回HTTP响应"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、服务器接受请求并返回HTTP响应</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、释放连接TCP连接"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、释放连接TCP连接</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5、客户端浏览器解析HTML内容"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、客户端浏览器解析HTML内容</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-常用的HTTP方法有哪些？"><span class="nav-number">1.1.</span> <span class="nav-text">1.常用的HTTP方法有哪些？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-GET方法与POST方法的区别"><span class="nav-number">1.2.</span> <span class="nav-text">2.GET方法与POST方法的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-HTTP请求报文与响应报文格式"><span class="nav-number">1.3.</span> <span class="nav-text">3.HTTP请求报文与响应报文格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-常见HTTP首部字段"><span class="nav-number">1.4.</span> <span class="nav-text">4.常见HTTP首部字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-HTTP1-1版本新特性"><span class="nav-number">1.5.</span> <span class="nav-text">5.HTTP1.1版本新特性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-HTTP的缺点与HTTPS"><span class="nav-number">1.6.</span> <span class="nav-text">6.HTTP的缺点与HTTPS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-HTTP优化"><span class="nav-number">1.7.</span> <span class="nav-text">7.HTTP优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-跨域问题"><span class="nav-number">1.8.</span> <span class="nav-text">8.跨域问题</span></a></li></ol></li></ol></div>
             
 
           </div>
