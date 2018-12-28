@@ -110,7 +110,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="IO,NIO,并发," />
 
 
 
@@ -123,16 +123,22 @@
 
 
 
-<meta name="description" content="learn conscientiously，live beautifully, dream passionately, love completely">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YitaiCloud">
-<meta property="og:url" content="https://tisonkong.github.io/github.io/categories/Tomcat/index.html">
+<meta name="description" content="Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。">
+<meta name="keywords" content="IO,NIO,并发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NIO的基础总结">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/10/12/java进阶之NIO/index.html">
 <meta property="og:site_name" content="YitaiCloud">
-<meta property="og:description" content="learn conscientiously，live beautifully, dream passionately, love completely">
+<meta property="og:description" content="Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-fb3310e57d93894e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-5e50515713aa3509.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-ac43d8ab02212cbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-12T13:40:13.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YitaiCloud">
-<meta name="twitter:description" content="learn conscientiously，live beautifully, dream passionately, love completely">
+<meta name="twitter:title" content="NIO的基础总结">
+<meta name="twitter:description" content="Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8926909-fb3310e57d93894e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -162,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="https://tisonkong.github.io/github.io/categories/Tomcat/"/>
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/10/12/java进阶之NIO/"/>
 
 
 
 
 
-  <title>分类: Tomcat | YitaiCloud</title>
+  <title>NIO的基础总结 | YitaiCloud</title>
   
 
 
@@ -187,7 +193,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/tisonkong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -315,55 +321,289 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Tomcat<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/10/12/java进阶之NIO/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tison">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cloud.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YitaiCloud">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/20/java web基础篇——Web服务及Tomcat总结/" itemprop="url">
-              
-                <span itemprop="name">Web服务器及Tomcat总结</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">NIO的基础总结</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:36:53+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T21:37:50+08:00">
+                2018-10-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  880
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java NIO(New IO)是一个可以替代标准Java IO API的IO API（从Java 1.4开始)，Java NIO提供了与标准IO不同的IO工作方式。<br><a id="more"></a><br><strong>Java NIO: Channels and Buffers（通道和缓冲区）</strong><br>标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓冲区（Buffer）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。</p>
+<p><strong>Java NIO: Non-blocking IO（非阻塞IO）</strong><br>Java NIO可以让你非阻塞的使用IO，例如：当线程从通道读取数据到缓冲区时，线程还是可以进行其他事情。当数据被写入到缓冲区时，线程可以继续处理它。从缓冲区写入通道也类似。</p>
+<p><strong>Java NIO: Selectors（选择器）</strong><br>Java NIO引入了选择器的概念，选择器用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个的线程可以监听多个数据通道。</p>
+<p>Java NIO 由以下几个核心部分组成：</p>
+<ul>
+<li>Channels</li>
+<li>Buffers</li>
+<li>Selectors</li>
+</ul>
+<p>基本上，所有的 IO 在NIO 中都从一个Channel 开始。Channel 有点象流。 数据可以从Channel读到Buffer中，也可以从Buffer 写到Channel中。<br><img src="http://upload-images.jianshu.io/upload_images/8926909-fb3310e57d93894e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Channel和Buffer的读写"></p>
+<p>Channel通道涵盖了UDP 和 TCP 网络IO，以及文件IO<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FileChannel</span><br><span class="line">DatagramChannel</span><br><span class="line">SocketChannel</span><br><span class="line">ServerSocketChannel</span><br></pre></td></tr></table></figure></p>
+<p>Buffer实现，覆盖了能通过IO发送的基本数据类型：<code>byte, short, int, long, float, double</code> 和 <code>char</code>。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ByteBuffer</span><br><span class="line">CharBuffer</span><br><span class="line">DoubleBuffer</span><br><span class="line">FloatBuffer</span><br><span class="line">IntBuffer</span><br><span class="line">LongBuffer</span><br><span class="line">ShortBuffer</span><br></pre></td></tr></table></figure></p>
+<p>Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。例如，在一个聊天服务器中。<br><img src="http://upload-images.jianshu.io/upload_images/8926909-5e50515713aa3509.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="单线程使用Selector处理多Channel"></p>
+<h4 id="一、NIO的使用"><a href="#一、NIO的使用" class="headerlink" title="一、NIO的使用"></a>一、NIO的使用</h4><h5 id="1-Channel"><a href="#1-Channel" class="headerlink" title="1.Channel"></a>1.Channel</h5><p><code>FileChannel</code> 从文件中读写数据。<br><code>DatagramChannel</code>能通过UDP读写网络中的数据。<br><code>SocketChannel</code> 能通过TCP读写网络中的数据。<br><code>ServerSocketChannel</code>可以监听新进来的TCP连接，像Web服务器那样。对每一个新进来的连接都会创建一个<code>SocketChannel</code>。</p>
+<p>使用<code>FileChannel</code>读取数据到Buffer中的示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile aFile = <span class="keyword">new</span> RandomAccessFile(<span class="string">"data/nio-data.txt"</span>, <span class="string">"rw"</span>);</span><br><span class="line">FileChannel inChannel = aFile.getChannel();</span><br><span class="line"></span><br><span class="line">ByteBuffer buf = ByteBuffer.allocate(<span class="number">48</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> bytesRead = inChannel.read(buf);</span><br><span class="line"><span class="keyword">while</span> (bytesRead != -<span class="number">1</span>) &#123;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"Read "</span> + bytesRead);</span><br><span class="line">    buf.flip();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(buf.hasRemaining())&#123;</span><br><span class="line">        System.out.print((<span class="keyword">char</span>) buf.get());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buf.clear();</span><br><span class="line">    bytesRead = inChannel.read(buf);</span><br><span class="line">&#125;</span><br><span class="line">aFile.close();</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-Buffer的使用"><a href="#2-Buffer的使用" class="headerlink" title="2.Buffer的使用"></a>2.Buffer的使用</h5><p>使用Buffer一般遵循下面几个步骤：</p>
+<ul>
+<li>分配空间（<code>ByteBuffer buf = ByteBuffer.allocate(1024);</code> 还有一种allocateDirector）</li>
+<li>写入数据到Buffer(<code>int bytesRead = fileChannel.read(buf);</code>)</li>
+<li>调用<code>filp()</code>方法（ <code>buf.flip();</code>）</li>
+<li>从Buffer中读取数据（<code>System.out.print((char)buf.get());</code>）</li>
+<li>调用<code>clear()</code>方法或者<code>compact()</code>方法</li>
+</ul>
+<p>Buffer顾名思义：缓冲区，实际上是一个容器，一个连续数组。Channel提供从文件、网络读取数据的渠道，但是读写的数据都必须经过Buffer。如下图：<br><img src="http://upload-images.jianshu.io/upload_images/8926909-ac43d8ab02212cbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="channel和buffer的读写"></p>
+<p>向Buffer中写数据：</p>
+<ul>
+<li>从Channel写到Buffer (<code>fileChannel.read(buf)</code>)</li>
+<li>通过Buffer的<code>put()</code>方法 （<code>buf.put(…)</code>）</li>
+</ul>
+<p>从Buffer中读取数据：</p>
+<ul>
+<li>从Buffer读取到Channel (<code>channel.write(buf)</code>)</li>
+<li>使用<code>get()</code>方法从Buffer中读取数据 （<code>buf.get()</code>）</li>
+</ul>
+<p>可以把Buffer简单地理解为一组基本数据类型的元素列表，它通过几个变量来保存这个数据的当前位置状态：<code>capacity, position, limit, mark</code></p>
+<h4 id="3-Selector"><a href="#3-Selector" class="headerlink" title="3.Selector"></a>3.Selector</h4><p>Selector的创建：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Selector selector = Selector.open();</span><br></pre></td></tr></table></figure></p>
+<p>为了将Channel和Selector配合使用，必须将Channel注册到Selector上，通过SelectableChannel.register()方法来实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssc= ServerSocketChannel.open();</span><br><span class="line">ssc.socket().bind(<span class="keyword">new</span> InetSocketAddress(PORT));</span><br><span class="line">ssc.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">ssc.register(selector, SelectionKey.OP_ACCEPT);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://ifeve.com/java-nio-all/" target="_blank" rel="noopener">《Java NIO 系列教程》</a><br><a href="http://www.importnew.com/19816.html" target="_blank" rel="noopener">《攻破JAVA NIO技术壁垒》</a></p>
+</blockquote>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Tison
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tisonkong.github.io/github.io/2018/10/12/java进阶之NIO/" title="NIO的基础总结">https://tisonkong.github.io/github.io/2018/10/12/java进阶之NIO/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+          
+            <a href="/tags/NIO/" rel="tag"><i class="fa fa-tag"></i> NIO</a>
+          
+            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/12/java web基础篇——Http协议/" rel="next" title="简单说说HTTP协议">
+                <i class="fa fa-chevron-left"></i> 简单说说HTTP协议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/28/java 网络编程之——IO、NIO和Netty/" rel="prev" title="网络编程之IO、NIO和Netty">
+                网络编程之IO、NIO和Netty <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -371,6 +611,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYyNi8xMDE4MQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -391,8 +640,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -487,6 +745,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、NIO的使用"><span class="nav-number">1.</span> <span class="nav-text">一、NIO的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Channel"><span class="nav-number">1.1.</span> <span class="nav-text">1.Channel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Buffer的使用"><span class="nav-number">1.2.</span> <span class="nav-text">2.Buffer的使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Selector"><span class="nav-number">2.</span> <span class="nav-text">3.Selector</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -626,6 +900,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -654,6 +932,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
