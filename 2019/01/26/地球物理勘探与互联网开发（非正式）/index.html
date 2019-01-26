@@ -110,7 +110,7 @@
 
 
 
-  <meta name="keywords" content="HTTP协议,网络," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -123,23 +123,34 @@
 
 
 
-<meta name="description" content="一、Http协议HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。">
-<meta name="keywords" content="HTTP协议,网络">
+<meta name="description" content="一、引言 刚开始我是学动物科学的，大学入学之初被调剂在第一产业阵营中，因无法与各种萌宠水产和谐相处，人心思变之下跳入第二产业的石油工业圈，这才入了石油物探的贼船">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单说说HTTP协议">
-<meta property="og:url" content="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/index.html">
+<meta property="og:title" content="YitaiCloud">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2019/01/26/地球物理勘探与互联网开发（非正式）/index.html">
 <meta property="og:site_name" content="YitaiCloud">
-<meta property="og:description" content="一、Http协议HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。">
+<meta property="og:description" content="一、引言 刚开始我是学动物科学的，大学入学之初被调剂在第一产业阵营中，因无法与各种萌宠水产和谐相处，人心思变之下跳入第二产业的石油工业圈，这才入了石油物探的贼船">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-55c27c7d4394a5a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-9f9e6a0cb61243cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-b5c977f5065f41a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8926909-cfd0517c7223404b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-10-12T13:14:49.202Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-f34b4ad60c5c09a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-a006e66f23e9d589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-b63a3f54911e28e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-5d7b498fbbd4ba0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-ab4e8daf65bf25bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-5393a4665fa63370.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-e681678aaae38101.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-746598283410bed7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-f343f6bdc2bcefe0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-70b01c41ca2981e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-54bd464669856dbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-4f20a625e69423b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-24618bc9c8f9997f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-5ae098ebb9e240cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-96505a98676f562d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-c2e3f667da3f4d9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-26T15:23:00.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单说说HTTP协议">
-<meta name="twitter:description" content="一、Http协议HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8926909-55c27c7d4394a5a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="YitaiCloud">
+<meta name="twitter:description" content="一、引言 刚开始我是学动物科学的，大学入学之初被调剂在第一产业阵营中，因无法与各种萌宠水产和谐相处，人心思变之下跳入第二产业的石油工业圈，这才入了石油物探的贼船">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/8926909-f34b4ad60c5c09a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -169,13 +180,13 @@
 
 
 
-  <link rel="canonical" href="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/"/>
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2019/01/26/地球物理勘探与互联网开发（非正式）/"/>
 
 
 
 
 
-  <title>简单说说HTTP协议 | YitaiCloud</title>
+  <title> | YitaiCloud</title>
   
 
 
@@ -336,7 +347,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2019/01/26/地球物理勘探与互联网开发（非正式）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tison">
@@ -353,7 +364,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">简单说说HTTP协议</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -365,8 +376,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T21:11:46+08:00">
-                2018-10-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-26T23:21:33+08:00">
+                2019-01-26
               </time>
             
 
@@ -375,28 +386,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -419,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,393
+                  5,386
                 </span>
               
 
@@ -435,7 +424,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  18
                 </span>
               
             </div>
@@ -456,62 +445,58 @@
       
 
       
-        <h4 id="一、Http协议"><a href="#一、Http协议" class="headerlink" title="一、Http协议"></a>一、Http协议</h4><p>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从3W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。<br><a id="more"></a><br>HTTP是一个应用层协议，基于请求与响应模式的、无状态的、应用层的协议，常基于TCP的连接方式。HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息URL，全称是<code>UniformResourceLocator</code>, 中文叫统一资源定位符,是互联网上用来标识某一处资源的地址。<br><img src="http://upload-images.jianshu.io/upload_images/8926909-55c27c7d4394a5a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请求响应模型"><br>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。以下是 HTTP 请求/响应的步骤：</p>
-<h6 id="1、客户端连接到Web服务器"><a href="#1、客户端连接到Web服务器" class="headerlink" title="1、客户端连接到Web服务器"></a>1、客户端连接到Web服务器</h6><p>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="https://www.jianshu.com/u/abcf0e8f851a" target="_blank" rel="noopener">https://www.jianshu.com/yitaicloud</a>。</p>
-<h6 id="2、发送HTTP请求"><a href="#2、发送HTTP请求" class="headerlink" title="2、发送HTTP请求"></a>2、发送HTTP请求</h6><p>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</p>
-<h6 id="3、服务器接受请求并返回HTTP响应"><a href="#3、服务器接受请求并返回HTTP响应" class="headerlink" title="3、服务器接受请求并返回HTTP响应"></a>3、服务器接受请求并返回HTTP响应</h6><p>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p>
-<h6 id="4、释放连接TCP连接"><a href="#4、释放连接TCP连接" class="headerlink" title="4、释放连接TCP连接"></a>4、释放连接<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a></h6><p>若connection 模式为close，则服务器主动关闭<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>，客户端被动关闭连接，释放<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</p>
-<h6 id="5、客户端浏览器解析HTML内容"><a href="#5、客户端浏览器解析HTML内容" class="headerlink" title="5、客户端浏览器解析HTML内容"></a>5、客户端浏览器解析HTML内容</h6><p>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p>
-<p>例如：在浏览器地址栏键入URL，按下回车之后会经历以下流程：<br>1、浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;<br>2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>;<br>3、浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为 <a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP 三次握手</a>的第三个报文的数据发送给服务器;<br>4、服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;<br>5、释放 <a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">TCP连接</a>;<br>6、浏览器将该 html 文本并显示内容;</p>
-<blockquote>
-<p><a href="http://www.cnblogs.com/ranyonsue/p/5984001.html" target="_blank" rel="noopener">《关于HTTP协议，一篇就够了》</a></p>
-</blockquote>
-<p><a href="http://blog.csdn.net/zhuolou1208/article/details/78106420" target="_blank" rel="noopener">如果TCP有点生疏了，请戳下这里</a></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/8926909-9f9e6a0cb61243cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Http协议在TCP/IP协议栈中位置"></p>
-<h5 id="1-常用的HTTP方法有哪些？"><a href="#1-常用的HTTP方法有哪些？" class="headerlink" title="1.常用的HTTP方法有哪些？"></a>1.常用的HTTP方法有哪些？</h5><p>GET： 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器。<br>POST：用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。<br>PUT： 传输文件，报文主体中包含文件内容，保存到对应URI位置。<br>DELETE：删除文件，与PUT方法相反，删除对应URI位置的文件。<br>HEAD： 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。<br>OPTIONS：查询相应URI支持的HTTP方法。</p>
-<h5 id="2-GET方法与POST方法的区别"><a href="#2-GET方法与POST方法的区别" class="headerlink" title="2.GET方法与POST方法的区别"></a>2.GET方法与POST方法的区别</h5><p><strong>区别一：</strong><br>get重点在从服务器上获取资源，post重点在向服务器发送数据；<br><strong>区别二：</strong></p>
-<ul>
-<li>get传输数据是通过URL请求，以field（字段）= value的形式，置于URL后，并用”?”连接，多个请求数据间用”&amp;”连接，如<a href="http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；" target="_blank" rel="noopener">http://127.0.0.1/Test/login.action?name=admin&amp;password=admin，这个过程用户是可见的；</a></li>
-<li>post传输数据通过Http的post机制，将字段与对应值封存在请求实体中发送给服务器，这个过程对用户是不可见的；</li>
+        <h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><hr>
+<p>刚开始我是学动物科学的，大学入学之初被调剂在第一产业阵营中，因无法与各种萌宠水产和谐相处，人心思变之下跳入第二产业的石油工业圈，这才入了石油物探的贼船<a id="more"></a>.初入时的美好憧憬被14年腰斩的油价破灭，同学调侃我这是49年加入国军、08年高位冲入A股之行径，现在想想当时凭着一腔热血想为郭嘉献石油，郭嘉却连一张上车的站票都给不到，瞅一眼今年三桶油的招聘，激烈如斯，想想自己当初就算再读个博可能也还是拿不到一张坐票，便也释怀了。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-f34b4ad60c5c09a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="中石化2019年招聘公示"></p>
+<p>好在不论出身的互联网给了个容身之所，16年再次转型进入第三产业的IT圈子做起了Java开发，在哪里都是搬砖不若来气候宜人的深圳，于是逃离了帝都的雾霾一路向南，在这边老老实实干起了“增删查改”的代码民工，如果软件有质量，我想这一公斤的代码里，有99%是CRUD的汗水，还有1%的算法，这也催生了我继续转型的动力，毕竟一直CURD的工作不得house，开局逆势一路逆风毫无翻盘点，开始更多的思考本质一点的，有挑战一点的问题。横跨多个产业专业，虽然被理数暴虐无完肤，但是不同学科的思维方式碰撞也能诞生一些有趣的结论，这篇文章仅仅站在一个普众角度来对比对比两个学科的异同和发展趋向。</p>
+<p>严肃正文开始。</p>
+<h3 id="一、差异"><a href="#一、差异" class="headerlink" title="一、差异"></a>一、差异</h3><hr>
+<h4 id="1、研究对象的差异"><a href="#1、研究对象的差异" class="headerlink" title="1、研究对象的差异"></a>1、研究对象的差异</h4><p>从产业角度来看，地球物理勘探属于第二产业，想做的事情还是把方圆几百公里和地下几千米的结构形态搞清楚，探讨的还是认识自然、改造自然的一个工业属性任务，古时候因为没有地震勘探一说，但是对于地下情况的了解又有着直接的需求，所以诞生了许多风水学家和摸金校尉。“寻龙分金看缠山，一重缠是一重关，关门如有八重险，不出阴阳八卦形”——古人把地表地形和五行八卦结合起来，以此推断地下地貌，把地下勘探变成了一门玄学。直到步入近现代历史，探求地下情况的方法开始以地球物理勘探为正室，从两眼摸瞎逐步走向了一步步推导公式作图，其余风水、五行路子移入旁门左道。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-a006e66f23e9d589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>互联网更多是属于第三产业，虽然没有直接去改造自然，但是对人类社会的变革起了巨大作用，其奠基学科主要以计算机科学、网络通信和软件工程等为基础，互联网想要做的就是把原本一个个孤立的节点纳入到因特网中，完成数字化、信息化的任务，互联网发展的核心任务就是要建立连接，PC时代连接了组织，移动互联网时代连接了个人，物联网时代连接万物。当然这种连接太多导致的麻烦也随之而来，比如要解决存储和计算的问题便产生了大数据学科，要解决权利过度中心化和信息安全问题便产生了区块链技术，要解决传输带宽和速度限制便产生了5G技术等等。</p>
+<h4 id="2、数据获取的差异"><a href="#2、数据获取的差异" class="headerlink" title="2、数据获取的差异"></a>2、数据获取的差异</h4><p>大家知道要打探消息有两种方式，要么就是别人主动告诉你，要么就是自己去问别人，类比到物探上，要去问地下有什么？长什么样？也是有两种方式，一种就是无法预测的地震，老天爷来一次地动山摇的通知，全世界的地震台都收到消息，这个能级的信息量很庞大，通常地壳与地球内部的信息获取的就要靠此。但是物探工程师们想要知道某一个地区范围的地下情况，就只能人工地震来获取数据了，这个信息获取成本较高昂且不可逆，排上几公里的检波器，一炮打完再换个地方接着炸，耗费几十几百人力不说，还得风餐露宿几个月才能把一个工区的数据采集完。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-b63a3f54911e28e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="地震勘探"></p>
+<p>一个炮打出来无数个雷克子波，子波射线在地下无尽的黑暗的世界里漂流，直到遇见了不一样的介质层，便可以换个角度继续漂流，有的子波转了几次方向，有幸携带着这些宝贵的介质层信息返回到了地面，告诉检波器自己的心跳震动，画出了一串漂亮的波形图便结束自己的使命。更多的子波要么在传输的过程中能量消耗殆尽、中道崩殂，要么就是转向了更深的地下被茫茫黑暗所吞噬。<br><img src="https://upload-images.jianshu.io/upload_images/8926909-5d7b498fbbd4ba0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="射线追踪"></p>
+<p>地震数据的获取十分辛苦，成本代价都很高，源于自然对象的深奥和未知。反过来看互联网，信息传递则十分方便便捷，一次数据的交互不外乎一端到另一端的TCP/HTTP的请求，一段文字、一张图片、一段语音在公网上都是一串串<code>0-1</code>数字在流动，数据的传递几乎是零成本的、数据的损耗和失真是可忽略不计的。</p>
+<h4 id="3、进化的差异"><a href="#3、进化的差异" class="headerlink" title="3、进化的差异"></a>3、进化的差异</h4><p>地球物理勘探的一大核心问题便是在对于地震数据的处理上，如何高效保真的处理这些原始数据换原成地下一个真实图像，本质上是一个数学物理问题，一个根据已知条件$A、B$求解未知数$ x $的过程：<br>$$ Ax=B $$<br>这么多年来，物探处理的进步主要依赖于物理及算法的进步，算法的核心在求解波动方程上：<br>$$<br>{ \partial^2 u \over \partial t^2 } - a^2 \Delta \mu = 0<br>$$<br>过去受限于计算力处理能力和求解算法的限制，用简化模型去成像一个二维图像，可以大致勾勒一个结构图，误差几百米都可以接受，随着摩尔定律的发力，计算机处理性能的大幅提升，求波动方程可以从积分解到微分解，从二维扩展到三维四维，从声波到全波形，反问题的求解如同比特币挖矿中的哈希碰撞一样用计算机蛮力的去穷尽一个最优解，唯一担心的就是时间不够用，一个大工区三维成像的跑一个月才能出结果，一个物探项目做几年都不成问题，但是要是换做生命周期较短的互联网项目来说，黄花菜都凉了。</p>
+<p>算法的进步难度之大，在于其基础学科属性，几百年来基础学科的推动都是举步维艰，联想到许多基础工业的发展，尤其是核心建立在数理化生的产业从来都是高端玩家，头部企业做大做强坐着吃肉，剩下的人吃土。互联网的发展能如此迅速，我想有部分在基础设施的廉价普及以及底层技术的开源，应用层的开发没有太高太大的技术壁垒，无论用全世界最好的PHP语言还是高贵的C++，业务应用层的开发者们都能满足产品同学的需求，堆出来了一个个的生活全覆盖的应用app。</p>
+<h4 id="4、发展阶段的差异"><a href="#4、发展阶段的差异" class="headerlink" title="4、发展阶段的差异"></a>4、发展阶段的差异</h4><p>国内物探的发展有了近百余年的历史，物探作为石油工业圈的先锋产业，也随着石油行业的盛衰经历了多轮高低潮，油价高时，勘探开发热情较高，引发了石油行业的黄金就业时代，彼时流传着“德州的油工、加州的码工”两大高薪专业传说，而今德州油工传说破灭，而硅谷码农则一枝独秀。两个专业发展的差异是由两者的历史阶段和学科内因导致的。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-ab4e8daf65bf25bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="150年原油价格史"></p>
+<p>地球物理勘探起于第二次工业革命之初，此次工业革命期经历了内燃机的爆发式增长，全面拉动了石油能源的需求，油价高时近130美元一桶，历史后来多次腰斩和大幅抬升，这并不是产业发展的自身原因，而是石油关乎能源安全捆绑了太多的政治和经济利益，不过行业百余年发展到如今物探似乎真正进入中老年期，工业革命完成了第三轮，交接棒开始递往了第四次工业革命，其作为老工业的基础行业退出历史中心舞台已是明显趋势，这种传统行业和新兴行业的势力博弈正在米国深刻上演（特朗普所代表的传统行业与硅谷新产业势力呈现出巨大撕裂，曾经新产能的石油行业由先锋者变成了如今既得利益的保守捍卫者）。</p>
+<p>切入石油产业链的物探经历过了黄金机遇期，如今也随着油价的颓势也显得势弱，与此相反的是互联网行业，因为切入了第三次工业革命的信息产业链，以摩尔定律为商业周期，实现了多次浪潮，成就了多批<code>BAT/TMD/PKQ</code>(拼多多、快手、趣头条)独角兽们的造富神话，互联网经历了早期的跌宕起伏，建立起更完善的<strong><code>ABCD</code>(AI-BlockChain-Cloud-Data)</strong>基础设施，随着5G的进一步普及，以及IoT基建的搭建，未来的想象空间会更加巨大，尽管寒冬来袭，但是从大周期来看此时的互联网所处的还是一个处于蓄力成长的青年期。</p>
+<h3 id="二、相同"><a href="#二、相同" class="headerlink" title="二、相同"></a>二、相同</h3><hr>
+<h4 id="1、进化过程一致"><a href="#1、进化过程一致" class="headerlink" title="1、进化过程一致"></a>1、进化过程一致</h4><p>物探处理中最终成果之一就是要输出贴近地下真实情况的成像结果，而互联网开发的中的重要成果则是要输出一个用户满意、市场认可的应用，这二者隶属于不同领域，一个需要对物理世界做去伪存真（自然科学命题），而后一个是需要迎合社会大众的审美（社会学命题），当然如何黏住用户、提升体验是产品经理需要考虑的事情，而开发人员更多的是考虑应用的高可用性和稳定性，那么这也是一个偏工程的命题了。二者在工程方面的进化轨迹有着高度一致。</p>
+<p>物理勘探中的要输出可靠的结果核心是在速度，有时候地震勘探也被称为速度勘探，是因为$Ax=B $方程中，未知数通常就是$x$，速度分析和建模的发展就经历了从单速度体、层速度体到网格速度体的工业改良过程。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-5393a4665fa63370.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="单速度体的时距曲线，地下是单纯而美好的同性同向介质，一个一元二次方程就能描述"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-e681678aaae38101.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="层速度模型，纵向上的精度在提高但仍然希望速度在横向上的变化小"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-746598283410bed7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="网格速度模型，网格尺寸一般为几十米，纵横向都适应，精度大幅提高"></p>
+<p>互联网开发中服务端的架构也遵循了一个类似的发展轨迹：从最初的单体应用、SOA服务化、微服务和时下时髦起来的服务网格化（ServiceMesh）。援引一张Apache Dubbo架构演进图，在PC互联网时代，用户量不大，数据量有限且业务范围不广的背景下，程序员们在单体应用里自由的飞翔着，不需要担心太多，不要怕数据和服务撑爆、也不用考虑线程安全，引入一下分层解耦都觉得绰绰有余。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-f343f6bdc2bcefe0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="单体时代过渡到服务分层，再升级到面向服务化的过程"></p>
+<p>但是步入移动互联网时代以后，世界就不那么美好了，业务上线动辄日增几十万用户，每天数据库要新增上亿的数据量把DBA吓坏了，业务火爆忘了限流就把后台服务器搞垮了我们开发又要背锅了，搞一个秒杀活动配置几十台服务器的集群把运维同学愁哭了，再怎么分层解耦都解决不了这种粗粒度的层级架构缺陷，微服务+容器技术也就应运而生，开发同学把巨无霸应用拆成了一个个微粒度服务，运维同学搭建容器环境把一个个微服务轻松复制几十上百个，DevOps一体化联手应对业务的爆发增长，公司老板又可以美滋滋谈日增日活，讲PPT拉融资。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-70b01c41ca2981e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微服务化和容器化"></p>
+<p>技术有利弊，微服务规模的增长会带来很多的复杂性，如服务发现、负载均衡、故障恢复、监控,甚至A/B测试、访问控制等，服务网格化（ServiceMesh）的趋势虽在暗流涌动，采用代理来剥离依赖与控制，但现有的服务端架构并未完全准备好进入IoT万物互联和智能时代，未来的设备数量是人数的几倍几十倍，连接数与存储数也是现有基础的翻番，互联网技术的发展面临的还是一个严峻的挑战。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-54bd464669856dbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Dubbo提出的ServiceMesh构想"></p>
+<h4 id="2、解决思路一致"><a href="#2、解决思路一致" class="headerlink" title="2、解决思路一致"></a>2、解决思路一致</h4><ul>
+<li><strong>迭代与完善</strong>。建立在理工基础上的学科在发展的历程上都是非常的相似，先是将现实中的工程问题抽象成一个个简单的模型，然后再不断的将模型完善，加入更多的参数和变量，把控好问题的边界，那么模型或应用就能按照设定的流程求得一个合理的结果，物探中这个过程会叫反问题的求解而机器学习中叫目标函数优化，<strong>发展的过程看起来就像是完善模型/应用、输出更好结果的过程</strong>。</li>
 </ul>
-<p><strong>区别三：</strong><br>Get传输的数据量小，因为受URL长度限制，但效率较高；<br>Post可以传输大量数据，所以上传文件时只能用Post方式；<br><strong>区别四：</strong><br>get是不安全的，因为URL是可见的，可能会泄露私密信息，如密码等(页面可以被缓存，或者获得历史访问记录)；<br>post较get安全性较高；<br><strong>区别五：</strong><br>get方式只能支持ASCII字符，向服务器传的中文字符可能会乱码。<br>post支持标准字符集，可以正确传递中文字符。</p>
-<h5 id="3-HTTP请求报文与响应报文格式"><a href="#3-HTTP请求报文与响应报文格式" class="headerlink" title="3.HTTP请求报文与响应报文格式"></a>3.HTTP请求报文与响应报文格式</h5><p>请求报文包含三部分：<br>a、请求行：包含请求方法、URI、HTTP版本信息<br>b、请求首部字段<br>c、请求内容实体<br>响应报文包含三部分：<br>a、状态行：包含HTTP版本、状态码、状态码的原因短语<br>b、响应首部字段<br>c、响应内容实体</p>
-<blockquote>
-<p><strong>返回的状态</strong><br>1xx：指示信息–表示请求已接收，继续处理<br>2xx：成功–表示请求已被成功接收、理解、接受<br>3xx：重定向–要完成请求必须进行更进一步的操作<br>4xx：客户端错误–请求有语法错误或请求无法实现<br>5xx：服务器端错误–服务器未能实现合法的请求</p>
-<p><strong>200：请求被正常处理</strong><br>204：请求被受理但没有资源可以返回<br>206：客户端只是请求资源的一部分，服务器只对请求的部分资源执行GET方法，相应报文中通过Content-Range指定范围的资源。<br>301：永久性重定向<br><strong>302：临时重定向</strong><br>303：与302状态码有相似功能，只是它希望客户端在请求一个URI的时候，能通过GET方法重定向到另一个URI上<br>304：发送附带条件的请求时，条件不满足时返回，与重定向无关<br>307：临时重定向，与302类似，只是强制要求使用POST方法<br>400：请求报文语法有误，服务器无法识别<br>401：请求需要认证<br>403：请求的对应资源禁止被访问<br><strong>404：服务器无法找到对应资源</strong><br><strong>500：服务器内部错误</strong><br>503：服务器正忙</p>
-</blockquote>
-<h5 id="4-常见HTTP首部字段"><a href="#4-常见HTTP首部字段" class="headerlink" title="4.常见HTTP首部字段"></a>4.常见HTTP首部字段</h5><p><img src="http://upload-images.jianshu.io/upload_images/8926909-b5c977f5065f41a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Http请求截图"></p>
-<p>a、通用首部字段（请求报文与响应报文都会使用的首部字段）<br>Date：创建报文时间<br>Connection：连接的管理<br>Cache-Control：缓存的控制<br>Transfer-Encoding：报文主体的传输编码方式</p>
-<p>b、请求首部字段（请求报文会使用的首部字段）<br>Host：请求资源所在服务器<br>Accept：可处理的媒体类型<br>Accept-Charset：可接收的字符集<br>Accept-Encoding：可接受的内容编码<br>Accept-Language：可接受的自然语言</p>
-<p>c、响应首部字段（响应报文会使用的首部字段）<br>Accept-Ranges：可接受的字节范围<br>Location：令客户端重新定向到的URI<br>Server：HTTP服务器的安装信息</p>
-<p>d、实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）<br>Allow：资源可支持的HTTP方法<br>Content-Type：实体主类的类型<br>Content-Encoding：实体主体适用的编码方式<br>Content-Language：实体主体的自然语言<br>Content-Length：实体主体的的字节数<br>Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</p>
-<h5 id="5-HTTP1-1版本新特性"><a href="#5-HTTP1-1版本新特性" class="headerlink" title="5.HTTP1.1版本新特性"></a>5.HTTP1.1版本新特性</h5><p>先上答案，然后再后面详细解释：<br>a、默认持久连接，节省通信量，只要客户端服务端任意一端没有明确提出断开TCP连接，就一直保持连接，可以发送多次HTTP请求<br>b、管线化，客户端可以同时发出多个HTTP请求，而不用一个个等待响应<br>c、断点续传原理</p>
-<p>HTTP 1.1支持持久连接，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。一个包含有许多图像的网页文件的多个请求和应答可以在一个连接中传输，但每个单独的网页文件的请求和应答仍然需要使用各自的连接。HTTP 1.1还允许客户端不用等待上一次请求结果返回，就可以发出下一次请求，但服务器端必须按照接收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容，这样也显著地减少了整个下载过程所需要的时间。基于HTTP 1.1协议的客户机与服务器的信息交换过程。<br><img src="http://upload-images.jianshu.io/upload_images/8926909-cfd0517c7223404b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Http1.1工作"></p>
-<blockquote>
-<p><a href="http://blog.csdn.net/elifefly/article/details/3964766/" target="_blank" rel="noopener">【HTTP 1.1与HTTP 1.0的比较HTTP 1.1与HTTP 1.0的比较】</a></p>
-</blockquote>
-<h5 id="6-HTTP的缺点与HTTPS"><a href="#6-HTTP的缺点与HTTPS" class="headerlink" title="6.HTTP的缺点与HTTPS"></a>6.HTTP的缺点与HTTPS</h5><p>a、通信使用明文不加密，内容可能被窃听<br>b、不验证通信方身份，可能遭到伪装<br>c、无法验证报文完整性，可能被篡改<br>HTTPS就是HTTP加上加密处理（一般是SSL安全通信线路）+认证+完整性保护</p>
-<h5 id="7-HTTP优化"><a href="#7-HTTP优化" class="headerlink" title="7.HTTP优化"></a>7.HTTP优化</h5><p>利用负载均衡优化和加速HTTP应用<br>利用HTTP Cache来优化网站</p>
-<p>补充一点<strong>Cache</strong>的细节：<br>缓存是一个到处都存在的用空间换时间的例子。通过使用多余的空间，我们能够获取更快的速度。用户在浏览网站的时候，浏览器能够在本地保存网站中的图片或者其他文件的副本，这样用户再次访问该网站的时候，浏览器就不用再下载全部的文件，减少了下载量意味着提高了页面加载的速度。<br>缓存非常有用，但是也带来了一定的缺陷。当我们的网站发生了更新的时候，比如说Logo换了，浏览器本地仍保存着旧版本的Logo，那么浏览器如何来确定使用本地文件还是使用服务器上的新文件？下面来介绍几种判断的方法。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-4f20a625e69423b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="迭代流程"></p>
 <ul>
-<li>Caching Method 1：Last-Modified<br>服务器为了通知浏览器当前文件的版本，会发送一个上次修改时间的标签，例如：<br>Last-modified: Fri, 16 Mar 2007 04:00:25 GMT</li>
-<li>Caching Method 2: ETag<br>通常情况下，通过修改时间来比较文件是可行的。但是在一些特殊情况，例如服务器的时钟发生了错误，服务器时钟进行修改，夏时制DST到来后服务器时间没有及时更新，这些都会引起通过修改时间比较文件版本的问题。<br>ETag可以用来解决这种问题。ETag是一个文件的唯一标志符。就像一个哈希或者指纹，每个文件都有一个单独的标志，只要这个文件发生了改变，这个标志就会发生变化。如同 Last-modified 一样，ETag 解决了文件版本比较的问题。只不过 ETag 的级别比 Last-Modified 高一些。</li>
-<li>Caching Method 3：Expires<br>缓存一个文件，并且与服务器确认版本的方式非常好，但是仍有一个缺点，我们必须连接服务器。每次使用前都进行一次比较，这种方法很安全，但还不是最好的。我们可以使用 Expiration Date 来减少这种请求。</li>
-<li>Caching Method 4：Max-age<br>Expires的方法很好，但是我们每次都得算一个精确的时间。max-age 标签可以让我们更加容易的处理过期时间。我们只需要说，这份资料你只能用一个星期就可以了。<blockquote>
-<p><a href="http://www.cnblogs.com/cocowool/archive/2011/08/22/2149929.html" target="_blank" rel="noopener">【利用HTTP Cache来优化网站】</a></p>
-</blockquote>
-</li>
+<li><strong>抽象化的思维</strong>。在物探中要去探地下，地下本都是岩石或孔隙流体，但是物探家和地质家门就会把地下抽象成一个个的物理模型（速度模型、属性模型、地质模型），物理世界未曾发生过改变，但是抽象的模型却在思维层面经历了不断的熔炼和提取。计算机同样也是如此，为了方便开发者们更好的完成现实实体与数据结构的映射，有了面向对象的思想，把现实世界的对象抽象成为信息世界里的对象，同时，计算机学科还很擅长用虚拟化的思维来解决难题，抽象成一个虚拟层出来，比如Java虚拟机来屏蔽开发者对机器底层的晦涩操作，比如Hash虚拟层来映射一致性哈希机器节点分配不均的问题。</li>
 </ul>
-<h5 id="8-跨域问题"><a href="#8-跨域问题" class="headerlink" title="8.跨域问题"></a>8.跨域问题</h5><p>浏览器的同源策略会导致跨域，这里同源策略又分为以下两种</p>
-<ul>
-<li>DOM同源策略：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的iframe是限制互相访问的。</li>
-<li>XmlHttpRequest同源策略：禁止使用XHR对象向不同源的服务器地址发起HTTP请求。</li>
-</ul>
-<p>只要协议、域名、端口有任何一个不同，都被当作是不同的域，之间的请求就是跨域操作。<br>要解决跨域问题可以参考以下文章：</p>
-<blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/28562290" target="_blank" rel="noopener">《跨域的那些事儿》</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">《跨域资源共享 CORS 详解》</a> 阮一峰大神的精品</p>
-</blockquote>
-<p>另外玉刚写了一篇不错的，角度是站在前端来看的<br><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1534170599&amp;ver=1058&amp;signature=NRB3iKd0Se5un2PbMTA2IjwRKl56ROP2rapEPAUXnW*zwI0itn4bonQ4ieM*-qxl0nLLyYQYkCkMrcpB5Bl1j8ujt6spFS3BEPfdIXVZvx5o6LXKHjDi74Zu6Mn2xsvB&amp;new=1" target="_blank" rel="noopener">《HTTP 必知必会的那些》</a></p>
+<h4 id="3、基础重复工作一致"><a href="#3、基础重复工作一致" class="headerlink" title="3、基础重复工作一致"></a>3、基础重复工作一致</h4><p>任何行业都有底层的辛苦劳作者，摩天大厦非一人之功，背后一定有许多辛苦勤劳的人员在付出着血汗，他们虽然是廉价的劳动力但是却是项目和工程进步的推动者和奠基者。就像修筑的长城，除了秦始被载入史册皇当时付出劳动血汗的那些修筑者也不应被遗忘。</p>
+<p>物探工作的基础重复工作非常之多，无论是采集时候的放炮人员，填埋器材人员，还是处理时候的初至拾取和点速度谱人员，这些基础工作重复而不可避免却也是整个输出结果的关键。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-24618bc9c8f9997f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="速度谱拾取，点击能量团拉平地震道集"></p>
+<p>互联网行业现在AI看起来冉冉上升，但是行业的推动和发展都需要海量的特征数据和行为数据，这些原始数据的获得就是需要一大批“AI数据民工”来完成，比如工程师想让 AI 准确识别出足球，最好办法不是用代码来描述足球，而是直接找来很多张带有足球的图片，用 AI 能读取的方式把图片、视频里的足球“标注”出来，扔进 AI 模型训练，之后它“自然而然”就获得了识别足球的能力。和小孩不同的是，机器需要在不同场景、不同角度下反复学习，这时需要标注大量用于训练机器学习模型的数据，让机器越来越像人。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-5ae098ebb9e240cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="一个让人奔溃的“数据标注”工作，数据标注得越准确、数量越多，最终训练出来的模型效果就越好。"></p>
+<p>人类变成投喂机器的流水线工人，亚马逊AMT也顺势成为AI时代的富士康。在国内，人工智能创业公司、BAT同样采用了目前数据标注行业的主流模式——“外包”。BAT、商汤、旷视、云从科技这类大的人工智能公司，一年在数据上的外包支出高达数千万元。科技网站TechRepublic的一篇文章描述称：这些分布在全球各地的50万名工人们，昼夜交替、时常待命，对数据进行手工输入、分类，区分出下一张照片中是否有“狗”，语句中的“bass”到底是低音还是鲈鱼。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-96505a98676f562d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="二、互补融合"><a href="#二、互补融合" class="headerlink" title="二、互补融合"></a>二、互补融合</h3><hr>
+<p>虽然两个产业分在上下游两端，上面还是总结了二者之间的异同，在过去，工业的上游打下坚实的产业链基础哺育了下游的发展壮大，在不远的未来，相信互联网相关技术的发展也能反补工业上游，一线城市所打造的智慧城市概念也可以迁移到油田的建设上，打造“智慧油田”，具体到物探层面，倒是可以首线用AI去解放基础重复的辛劳工作。</p>
+<h3 id="三、个人发展窥探"><a href="#三、个人发展窥探" class="headerlink" title="三、个人发展窥探"></a>三、个人发展窥探</h3><hr>
+<p>最后讲讲职业发展，意淫和想象不能当饭吃，不同的行业有不一样的打怪升级路线，各行各业也都有自己的阶层，如何突破个人阶层才是硬道理。过去石油物探是一个<strong>蓝海+增量市场</strong>，全国各地到处是等待开发的勘探区，于茫茫的地表之上“分金定穴”，勘探到一个亿吨级的大油/气田很快就能走向人生巅峰，响应郭嘉号召为祖国找石油、献石油不是一句空话，但是任何增量市场都会有红利消失殆尽的一天，蓝海变红海，增量变存量是一个必然的过程，相应的阶层之间的跨越和流动越来越难，这也是我身边许多物探同学感觉到求职困难和个人发展容易遭遇瓶颈的时代背景，<strong>行业给个人施展的空间少了</strong>。</p>
+<p>这个和顾子明先生写《汉武帝与抗美援朝》的思路一致，汉武帝北征的根本在于国内人口和矛盾聚集，为了缓和矛盾选择了扩张之路，以北征获得了大量土地和增量蛋糕，把国内的存量博弈变为增量博弈，国内大量的改革都能够得以在增量中推进，同时军功也开启了底层向上流通的渠道，使得整个汉朝的体制朝气蓬勃。而如今这几十年，邓爷爷为什么改革开放成功背后的原因也大抵如此，那些跟着国家队出手、赌对国运的人，又有谁曾被亏待过。<strong>细看最近这几年的郭嘉政策，多次在十九大报告提到互联网、AI和大数据新动能，开启一个新增量市场的意图十分明显！</strong></p>
+<p>个人也是需要利用这样的时代机遇去寻找增量市场和空间，互联网的发展经过了二十年已经过了两代重要时期，第一波的PC互联网红利诞生了BAT，第二波移动互联网诞生了TMD和PKQ，每一波机遇期都释放出了足够大的红利和增量市场，为每个细分领域的独角兽发展提供了充分的土壤，可以预见的是第三波红利期的到来也在不远的几年，这个机遇应该是长期性的趋势而非短暂性的风口，这个增量蛋糕也将是数倍于第一次和第二次的总和，足以抹平郭嘉在改革发展过程的阵痛，也会为许多人提供新财富和跨越自身阶层的机会。每次机遇期的开启都是以一次金融危机和寒冬为篇章，千禧年互联网泡沫的终结，开启了后面的PC互联网时代，08年金融危机后开启了全面的移动互联网浪潮和美股十年牛市。2018年又结束了一个循环周期，<strong>Winter is comming，普通人要做的就是活下去，提前储备布局等候春天的到来！</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-c2e3f667da3f4d9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 
       
     </div>
@@ -532,7 +517,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/" title="简单说说HTTP协议">https://tisonkong.github.io/github.io/2018/10/12/java web基础篇——Http协议/</a>
+    <a href="https://tisonkong.github.io/github.io/2019/01/26/地球物理勘探与互联网开发（非正式）/" title="">https://tisonkong.github.io/github.io/2019/01/26/地球物理勘探与互联网开发（非正式）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -545,14 +530,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/HTTP协议/" rel="tag"><i class="fa fa-tag"></i> HTTP协议</a>
-          
-            <a href="/tags/网络/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
-          
-        </div>
-      
 
       
       
@@ -562,8 +539,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/20/一致性哈希算法原理和实现/" rel="next" title="一致性哈希算法原理和实现">
-                <i class="fa fa-chevron-left"></i> 一致性哈希算法原理和实现
+              <a href="/2018/12/28/java 网络编程之——IO、NIO和Netty/" rel="next" title="网络编程之IO、NIO和Netty">
+                <i class="fa fa-chevron-left"></i> 网络编程之IO、NIO和Netty
               </a>
             
           </div>
@@ -571,10 +548,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/12/java进阶之NIO/" rel="prev" title="NIO的基础总结">
-                NIO的基础总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +743,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、Http协议"><span class="nav-number">1.</span> <span class="nav-text">一、Http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、客户端连接到Web服务器"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、客户端连接到Web服务器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、发送HTTP请求"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、发送HTTP请求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、服务器接受请求并返回HTTP响应"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、服务器接受请求并返回HTTP响应</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、释放连接TCP连接"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、释放连接TCP连接</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5、客户端浏览器解析HTML内容"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、客户端浏览器解析HTML内容</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-常用的HTTP方法有哪些？"><span class="nav-number">1.1.</span> <span class="nav-text">1.常用的HTTP方法有哪些？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-GET方法与POST方法的区别"><span class="nav-number">1.2.</span> <span class="nav-text">2.GET方法与POST方法的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-HTTP请求报文与响应报文格式"><span class="nav-number">1.3.</span> <span class="nav-text">3.HTTP请求报文与响应报文格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-常见HTTP首部字段"><span class="nav-number">1.4.</span> <span class="nav-text">4.常见HTTP首部字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-HTTP1-1版本新特性"><span class="nav-number">1.5.</span> <span class="nav-text">5.HTTP1.1版本新特性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-HTTP的缺点与HTTPS"><span class="nav-number">1.6.</span> <span class="nav-text">6.HTTP的缺点与HTTPS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-HTTP优化"><span class="nav-number">1.7.</span> <span class="nav-text">7.HTTP优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-跨域问题"><span class="nav-number">1.8.</span> <span class="nav-text">8.跨域问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、引言"><span class="nav-number">1.</span> <span class="nav-text">一、引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、差异"><span class="nav-number">2.</span> <span class="nav-text">一、差异</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、研究对象的差异"><span class="nav-number">2.1.</span> <span class="nav-text">1、研究对象的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、数据获取的差异"><span class="nav-number">2.2.</span> <span class="nav-text">2、数据获取的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、进化的差异"><span class="nav-number">2.3.</span> <span class="nav-text">3、进化的差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、发展阶段的差异"><span class="nav-number">2.4.</span> <span class="nav-text">4、发展阶段的差异</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、相同"><span class="nav-number">3.</span> <span class="nav-text">二、相同</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、进化过程一致"><span class="nav-number">3.1.</span> <span class="nav-text">1、进化过程一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、解决思路一致"><span class="nav-number">3.2.</span> <span class="nav-text">2、解决思路一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、基础重复工作一致"><span class="nav-number">3.3.</span> <span class="nav-text">3、基础重复工作一致</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、互补融合"><span class="nav-number">4.</span> <span class="nav-text">二、互补融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、个人发展窥探"><span class="nav-number">5.</span> <span class="nav-text">三、个人发展窥探</span></a></li></ol></div>
             
 
           </div>
