@@ -110,7 +110,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Redis,性能优化," />
 
 
 
@@ -123,16 +123,20 @@
 
 
 
-<meta name="description" content="learn conscientiously，live beautifully, dream passionately, love completely">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YitaiCloud">
-<meta property="og:url" content="https://tisonkong.github.io/github.io/archives/2018/05/index.html">
+<meta name="description" content="同关系型数据库一样，Redis也有自己的性能问题需要优化，在生产上可能会遭遇慢查询，弱事务，原子性等场景，这里总结几类Redis的常见问题并给出对应的解决方案。">
+<meta name="keywords" content="Redis,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis性能优化和高级用法">
+<meta property="og:url" content="https://tisonkong.github.io/github.io/2019/01/27/Redis性能优化和高级用法/index.html">
 <meta property="og:site_name" content="YitaiCloud">
-<meta property="og:description" content="learn conscientiously，live beautifully, dream passionately, love completely">
+<meta property="og:description" content="同关系型数据库一样，Redis也有自己的性能问题需要优化，在生产上可能会遭遇慢查询，弱事务，原子性等场景，这里总结几类Redis的常见问题并给出对应的解决方案。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-aff84bd7a51a4625.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-01-27T00:12:31.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YitaiCloud">
-<meta name="twitter:description" content="learn conscientiously，live beautifully, dream passionately, love completely">
+<meta name="twitter:title" content="Redis性能优化和高级用法">
+<meta name="twitter:description" content="同关系型数据库一样，Redis也有自己的性能问题需要优化，在生产上可能会遭遇慢查询，弱事务，原子性等场景，这里总结几类Redis的常见问题并给出对应的解决方案。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/8926909-aff84bd7a51a4625.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -162,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="https://tisonkong.github.io/github.io/archives/2018/05/"/>
+  <link rel="canonical" href="https://tisonkong.github.io/github.io/2019/01/27/Redis性能优化和高级用法/"/>
 
 
 
 
 
-  <title>归档 | YitaiCloud</title>
+  <title>Redis性能优化和高级用法 | YitaiCloud</title>
   
 
 
@@ -187,7 +191,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/tisonkong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -315,370 +319,279 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tisonkong.github.io/github.io/2019/01/27/Redis性能优化和高级用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tison">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/cloud.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YitaiCloud">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Redis性能优化和高级用法</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T08:10:39+08:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 20 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/一致性哈希算法原理和实现/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">一致性哈希算法原理和实现</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,869
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T23:13:16+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java web基础篇——Web服务及Tomcat总结/" itemprop="url">
-              
-                <span itemprop="name">Web服务器及Tomcat总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:36:53+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/详解IO的使用/" itemprop="url">
-              
-                <span itemprop="name">详解IO的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>同关系型数据库一样，Redis也有自己的性能问题需要优化，在生产上可能会遭遇慢查询，弱事务，原子性等场景，这里总结几类Redis的常见问题并给出对应的解决方案。<br><a id="more"></a></p>
+<h3 id="一、慢查询优化"><a href="#一、慢查询优化" class="headerlink" title="一、慢查询优化"></a>一、慢查询优化</h3><hr>
+<p>从客户端发出的一个请求可以分为下图中4个步骤（<code>发送命令－〉命令排队－〉命令执行－〉返回结果</code>），由于Redis是单线程模型，那么很有可能一两个较慢的查询阻塞了多个业务的查询效率，这个时候需要对耗时较长的慢查询进行定位分析，首先需要设定Redis的日志，有两个关键参数可以记录第三个步骤执行命令的耗时记录。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/8926909-aff84bd7a51a4625.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Redis查询"></p>
+<p>关于 Redis 慢查询的配置有两个，分别是 <code>slowlog-log-slower-than</code> 和 <code>slowlog-max-len</code>。 </p>
+<ul>
+<li>1.<code>slowlog-log-slower-than</code>，用来控制慢查询的阈值，所有执行时间超过该值的命令都会被记录下来。该值的单位为微秒，默认值为 <code>10000</code>(10毫秒)，如果设置为 <code>0</code>，那么所有的记录都会被记录下来，如果设置为小于 <code>0</code> 的值，那么对于任何命令都不会记录，即关闭了慢查询。可以通过在配置文件中设置，或者用 <code>config set</code> 命令来设置：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config set slowlog-log-slower-than 10000</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用config set完后，若想将配置持久化保存到redis.conf，要执行<code>config rewrite</code></p>
+<ul>
+<li>2.<code>slowlog-max-len</code>，用来设置存储慢查询记录列表的大小，默认值为 <code>128</code>，当该列表满了时，如果有新的记录进来，那么 Redis 会把队最旧的记录清理掉，然后存储新的记录。在生产环境我们可以适当调大，比如调成 <code>1000</code>，这样就可以缓冲更多的记录。</li>
+</ul>
+<p>慢查询配置好，那么在定位问题的时候可以采用<code>slowlog get</code>获取信息。运行Demo如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; slowlog get</span><br><span class="line"> 1) 1) (integer) 456</span><br><span class="line">    2) (integer) 1531632044</span><br><span class="line">    3) (integer) 3</span><br><span class="line">    4) 1) &quot;get&quot;</span><br><span class="line">       2) &quot;m&quot;</span><br><span class="line">    5) &quot;127.0.0.1:50106&quot;</span><br><span class="line">    6) &quot;&quot;</span><br><span class="line"> 2) 1) (integer) 455</span><br><span class="line">    2) (integer) 1531632037</span><br><span class="line">    3) (integer) 14</span><br><span class="line">    4) 1) &quot;keys&quot;</span><br><span class="line">       2) &quot;*&quot;</span><br><span class="line">    5) &quot;127.0.0.1:50106&quot;</span><br><span class="line">    6) &quot;</span><br></pre></td></tr></table></figure></p>
+<p>分别对应着：<br>1) 慢查询记录 id<br>2) 发起命令的时间戳<br>3) 命令耗时，单位为微秒<br>4) 该条记录的命令及参数<br>5) 客户端网络套接字（ip: port）</p>
+<p><strong>单个慢查询的操作定位出来以后，一般可以按照拆解的思路，化大为小，尽量减少对其他业务请求的影响。</strong></p>
+<blockquote>
+<p>source：<a href="https://blog.csdn.net/qianghaohao/article/details/81052461" target="_blank" rel="noopener">Redis 慢查询分析</a></p>
+</blockquote>
+<h3 id="二、Pipeline（管道）"><a href="#二、Pipeline（管道）" class="headerlink" title="二、Pipeline（管道）"></a>二、Pipeline（管道）</h3><hr>
+<p>上面已提到过Redis执行命令分为了4个步骤：<code>发送命令－〉命令排队－〉命令执行－〉返回结果</code>，这个过程称为<code>Round trip time</code>(简称RTT, 往返时间)，<code>mget mset</code>有效节约了RTT，但大部分命令（如hgetall，并没有mhgetall）不支持批量操作，需要消耗N次RTT 。有时我们会在短时间内发送大量互不依赖的命令(例如：后执行的命令不需要使用前面返回的结果)这个时候需要Pipeline来解决这个问题。</p>
+<p>使用Pipeline在对Redis批量读写的时候，性能上有非常大的提升。因为管道可以在一次tcp的请求中同时发送多条命令，并且将响应结果一次性的返回给客户端。对于既定数量的命令请求，Redis管道通过减少客户端和服务器端的通信次数，来达到减少通信传输中往返时间的目的，提高效率。</p>
+<p>Pipeline示例代码，用法比较简单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Pipeline pipelined = jedis.pipelined();</span><br><span class="line">Pipeline p = jedis.pipelined();</span><br><span class="line">/* 插入多条数据 */</span><br><span class="line">for(Integer i = 0; i &lt; 100000; i++) &#123;</span><br><span class="line">      p.set(i.toString(), i.toString());</span><br><span class="line">&#125;</span><br><span class="line">             </span><br><span class="line">Response&lt;String&gt; response = p.get(&quot;999&quot;);</span><br><span class="line">/**</span><br><span class="line"> * 执行报异常：redis.clients.jedis.exceptions.JedisDataException: </span><br><span class="line"> * Please close pipeline or multi block before calling this method.</span><br><span class="line"> * System.out.println(response.get()); </span><br><span class="line">**/</span><br><span class="line">p.sync();</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>和Redis的事务类似，管道能完成的操作也能够被更加灵活的Redis脚本实现，但是脚本的可读性不强、可维护性差，<strong>如果批量处理的命令之间不存在依赖关系时，优先使用管道</strong>；反之，则只能使用脚本了。</li>
+<li>用Pipeline方式，Redis在处理完所有命令前先缓存起所有命令的处理结果，打包的命令越多，缓存消耗内存也越多，所以并不是打包的命令越多越好，<strong>正确的做法是可以将大量命令的拆分多个小的Pipeline命令完成</strong>。</li>
+</ul>
+<p><strong><em>注意：由于pipeline的原理是收集需执行的命令，到最后才一次性执行。所以无法在中途立即查得数据的结果（需待pipelining完毕后才能查得结果），这样会使得无法立即查得数据进行条件判断。</em></strong></p>
+<blockquote>
+<p>source：<a href="https://www.cnblogs.com/xiaoxiongcanguan/p/9954254.html" target="_blank" rel="noopener">redis管道</a></p>
+</blockquote>
+<h3 id="三、Redis事务和Lua脚本"><a href="#三、Redis事务和Lua脚本" class="headerlink" title="三、Redis事务和Lua脚本"></a>三、Redis事务和Lua脚本</h3><hr>
+<p>Redis 事务可以一次执行多个命令，它的用法也比较简答，将一组需要一起执行的命令放到<code>multi</code>和<code>exec</code>两个命令之间，其中<code>multi</code>代表事务开始，<code>exec</code>代表事务结束。但是<strong>Redis的事务并不保证原子性</strong>，或者说是一种弱事务机制，Redis的事务可以理解为一个打包的批量执行脚本，但批量指令并非原子化的操作，中间某条指令的失败不会导致前面已做指令的回滚，也不会造成后续的指令不做。如果需要实现原子操作，<strong>Redis可以结合Lua脚本来保证原子性</strong>。</p>
+<p>本人所在项目的红包模块在Redis上有很不错的应用，利用Redis的高性能缓存实现高并发秒抢，利用Lua实现原子操作，这部分的思路，可以在<a href="https://www.jianshu.com/p/b58ed2fe6976?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">【利用Redis和Lua的原子性实现抢红包功能】</a>有进行参考，而具体的源码实现可以参照 <a href="https://github.com/ZhuBaker/redis-lua" target="_blank" rel="noopener">【Redis+Lua的红包源码】</a>来实现。</p>
+<p>把其中的lua脚本和注释贴出来FYI：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">*      <span class="comment">-- 函数：尝试获得红包，如果成功，则返回json字符串，如果不成功，则返回空</span></span><br><span class="line">*      <span class="comment">-- 参数：红包队列名， 已消费的队列名，去重的Map名，用户ID</span></span><br><span class="line">*      <span class="comment">-- 返回值：nil 或者 json字符串，包含用户ID：userId，红包ID：id，红包金额：money</span></span><br><span class="line">*</span><br><span class="line">*      <span class="comment">-- 如果用户已抢过红包，则返回nil</span></span><br><span class="line">*      <span class="keyword">if</span> redis.call(<span class="string">'hexists'</span>, KEYS[<span class="number">3</span>], KEYS[<span class="number">4</span>]) ~= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">*        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">*      <span class="keyword">else</span></span><br><span class="line">*        <span class="comment">-- 先取出一个小红包</span></span><br><span class="line">*        <span class="keyword">local</span> hongBao = redis.call(<span class="string">'rpop'</span>, KEYS[<span class="number">1</span>]);</span><br><span class="line">*        <span class="keyword">if</span> hongBao <span class="keyword">then</span></span><br><span class="line">*          <span class="keyword">local</span> x = cjson.decode(hongBao);</span><br><span class="line">*          <span class="comment">-- 加入用户ID信息</span></span><br><span class="line">*          x[<span class="string">'userId'</span>] = KEYS[<span class="number">4</span>];</span><br><span class="line">*          <span class="keyword">local</span> re = cjson.encode(x);</span><br><span class="line">*          <span class="comment">-- 把用户ID放到去重的set里</span></span><br><span class="line">*          redis.call(<span class="string">'hset'</span>, KEYS[<span class="number">3</span>], KEYS[<span class="number">4</span>], KEYS[<span class="number">4</span>]);</span><br><span class="line">*          <span class="comment">-- 把红包放到已消费队列里</span></span><br><span class="line">*          redis.call(<span class="string">'lpush'</span>, KEYS[<span class="number">2</span>], re);</span><br><span class="line">*          <span class="keyword">return</span> re;</span><br><span class="line">*        <span class="keyword">end</span></span><br><span class="line">*      <span class="keyword">end</span></span><br><span class="line">*      <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
+<p>而在Java里加载脚本的方法也比较easy：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//线程模拟抢红包</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"BEGIN "</span> + <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(<span class="keyword">new</span> Date()));</span><br><span class="line">    Jedis jedis = RedisJava.getResource();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = beginNum ; i &lt;= endNum; i++)&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            List&lt;String&gt; userInfo = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">            userInfo.add(<span class="string">""</span>+i);</span><br><span class="line">            userInfo.add(<span class="string">"name"</span> + i);</span><br><span class="line">            userInfo.add(<span class="string">"http://xxx"</span> + i);</span><br><span class="line">            <span class="comment">// Lua脚本执行</span></span><br><span class="line">            Object eval = jedis.evalsha(hashsha, <span class="number">3</span>, userInfo.toArray(<span class="keyword">new</span> String[]&#123;&#125;));</span><br><span class="line">            System.out.println(eval);</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    jedis.close();</span><br><span class="line">    System.out.println(<span class="string">"END "</span> + <span class="keyword">new</span> SimpleDateFormat(<span class="string">"HH:mm:ss"</span>).format(<span class="keyword">new</span> Date()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java基础之IO流（设计模式）/" itemprop="url">
-              
-                <span itemprop="name">结合IO类讲讲装饰者模式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java基础之IO流（File篇）/" itemprop="url">
-              
-                <span itemprop="name">IO里的老熟人File类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java 多线程总结篇4——锁机制/" itemprop="url">
-              
-                <span itemprop="name">多线程从入门到放弃【4】</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java 多线程总结篇3之——生命周期和线程同步/" itemprop="url">
-              
-                <span itemprop="name">多线程从入门到放弃【3】</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java 多线程总结篇2之——Thread类及常用函数/" itemprop="url">
-              
-                <span itemprop="name">多线程从入门到放弃【2】</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/java 多线程总结篇1之——基本概念/" itemprop="url">
-              
-                <span itemprop="name">多线程从入门到放弃【1】</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T22:35:08+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Tison
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://tisonkong.github.io/github.io/2019/01/27/Redis性能优化和高级用法/" title="Redis性能优化和高级用法">https://tisonkong.github.io/github.io/2019/01/27/Redis性能优化和高级用法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
+          
+            <a href="/tags/性能优化/" rel="tag"><i class="fa fa-tag"></i> 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/26/地球物理勘探与互联网开发（非正式）/" rel="next" title="地球物理勘探与互联网开发（非正式）">
+                <i class="fa fa-chevron-left"></i> 地球物理勘探与互联网开发（非正式）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -686,6 +599,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYyNi8xMDE4MQ=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -706,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -802,6 +733,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、慢查询优化"><span class="nav-number">1.</span> <span class="nav-text">一、慢查询优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Pipeline（管道）"><span class="nav-number">2.</span> <span class="nav-text">二、Pipeline（管道）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Redis事务和Lua脚本"><span class="nav-number">3.</span> <span class="nav-text">三、Redis事务和Lua脚本</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -941,6 +888,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -969,6 +920,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
