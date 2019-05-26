@@ -133,7 +133,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-c1435a8ceb30e2a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-f919c016030f2148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-12-28T13:27:23.878Z">
+<meta property="og:updated_time" content="2019-01-27T00:26:37.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程之IO、NIO和Netty">
 <meta name="twitter:description" content="一、基本概述IO 一直是编程学习中的核心部分，在这里所说的IO 不仅仅是对文件的操作，还常常应用在网络编程中，比如 Socket 通信、协议服务器等，都是典型的 IO 操作目标，伴随着海量数据增长和分布式系统的发展，IO 的扩展能力则显得十分重要，Java语言提供了强大的IO机制，基于不同的抽象模型和交互方式，总结之可归纳为三种：   传统的 java.io 包，基于流模型实现的BIO 升级的 j">
@@ -417,7 +417,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,270
+                  4,264
                 </span>
               
 
@@ -472,17 +472,10 @@
 </ul>
 <p><strong>首先介绍一下IO的基础API设计和概念模型：</strong></p>
 <ul>
-<li><ol>
 <li>IO 不仅仅是对文件的操作，网络编程中，比如 <code>Socket</code> 通信，都是典型的 IO 操作目标。输入流、输出流（<code>InputStream / OutputStream</code>）是用于读取或写入字节的，例如操作图片文件。</li>
-</ol>
+<li><p><code>Reader/Writer</code> 则是用于操作字符，增加了字符编解码等功能，适用于类似从文件中读取或者写入文本信息。本质上计算机操作的都是字节，不管是网络通信还是文件读取，<code>Reader/Writer</code> 相当于构建了应用逻辑和原始数据之间的桥梁。<code>BufferedOutputStream</code> 等带缓冲区的实现，可以避免频繁的磁盘读写，进而提高 IO 处理效率。这种设计利用了缓冲区，将批量数据进行一次操作，但在使用中千万别忘了 flush。</p>
 </li>
-<li><ol>
-<li><code>Reader/Writer</code> 则是用于操作字符，增加了字符编解码等功能，适用于类似从文件中读取或者写入文本信息。本质上计算机操作的都是字节，不管是网络通信还是文件读取，<code>Reader/Writer</code> 相当于构建了应用逻辑和原始数据之间的桥梁。<code>BufferedOutputStream</code> 等带缓冲区的实现，可以避免频繁的磁盘读写，进而提高 IO 处理效率。这种设计利用了缓冲区，将批量数据进行一次操作，但在使用中千万别忘了 flush。</li>
-</ol>
-</li>
-<li><ol>
-<li>很多 IO 工具类都实现了 <code>Closeable</code> 接口，因为需要进行资源的释放，需要利用try-with-resources、 try-finally 等机制保证 <code>FileInputStream</code> 被明确关闭，进而相应文件描述符也会失效，否则将导致资源无法被释放。利用专栏前面的内容提到的 <code>Cleaner</code> 或 <code>finalize</code> 机制作为资源释放的最后把关，也是必要的。</li>
-</ol>
+<li><p>很多 IO 工具类都实现了 <code>Closeable</code> 接口，因为需要进行资源的释放，需要利用try-with-resources、 try-finally 等机制保证 <code>FileInputStream</code> 被明确关闭，进而相应文件描述符也会失效，否则将导致资源无法被释放。利用专栏前面的内容提到的 <code>Cleaner</code> 或 <code>finalize</code> 机制作为资源释放的最后把关，也是必要的。</p>
 </li>
 </ul>
 <blockquote>
@@ -490,17 +483,11 @@
 </blockquote>
 <p><strong>接下来说NIO：</strong></p>
 <ul>
-<li><ol>
-<li><code>Buffer</code>，高效的数据容器，除了布尔类型，所有原始数据类型都有相应的 <code>Buffer</code> 实现。</li>
-</ol>
+<li><p><code>Buffer</code>，高效的数据容器，除了布尔类型，所有原始数据类型都有相应的 <code>Buffer</code> 实现。</p>
 </li>
-<li><ol>
-<li><code>Channel</code>，Channel 是操作系统底层的一种抽象，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中，可以通过Socket 获取 Channel，反之亦然。</li>
-</ol>
+<li><p><code>Channel</code>，Channel 是操作系统底层的一种抽象，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中，可以通过Socket 获取 Channel，反之亦然。</p>
 </li>
-<li><ol>
-<li><code>Selector</code>，是 NIO 实现多路复用的基础，它提供了一种高效的机制，可以检测到注册在，<code>Selector</code> 上的多个 <code>Channel</code> 中，是否有 <code>Channel</code> 处于就绪状态，进而实现了单线程对多Channel 的高效管理。</li>
-</ol>
+<li><p><code>Selector</code>，是 NIO 实现多路复用的基础，它提供了一种高效的机制，可以检测到注册在，<code>Selector</code> 上的多个 <code>Channel</code> 中，是否有 <code>Channel</code> 处于就绪状态，进而实现了单线程对多Channel 的高效管理。</p>
 </li>
 </ul>
 <p>在 Java 7 中，NIO 有了进一步的改进，也就是 NIO 2，引入了异步非阻塞 IO 方式，也有很多人叫它 AIO（<code>Asynchronous IO</code>）。异步 IO 操作基于事件和回调机制，可以简单理解为，应用操作直接返回，而不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作。</p>
@@ -722,7 +709,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -733,7 +720,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -744,7 +731,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -854,7 +841,7 @@ var jiathis_config={
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共84.7k字</span>
+  <span class="post-count">博客全站共90.4k字</span>
 </div>
 
         
