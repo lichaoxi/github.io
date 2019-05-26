@@ -144,7 +144,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-8579cb986a62ce17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-f9965d298c1a5791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/8926909-4b2df55222e78e65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-05-26T07:18:39.950Z">
+<meta property="og:updated_time" content="2019-05-26T07:24:03.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Kafka+ELK搭建海量日志平台">
 <meta name="twitter:description" content="早在传统的单体应用时代，查看日志大都通过SSH客户端登服务器去看，使用较多的命令就是 less 或者 tail。如果服务部署了好几台，就要分别登录到这几台机器上看，等到了分布式和微服务架构流行时代，一个从APP或H5发起的请求除了需要登陆服务器去排查日志，往往还会经过MQ和RPC调用远程到了别的主机继续处理，开发人员定位问题可能还需要根据TraceID或者业务唯一主键去跟踪服务的链路日志，基于传">
@@ -466,7 +466,7 @@
 
       
         <p><img src="https://upload-images.jianshu.io/upload_images/8926909-33c0a0c6aa4fc9bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ELKB图谱"></p>
-<p>早在传统的单体应用时代，查看日志大都通过SSH客户端登服务器去看，使用较多的命令就是 less 或者 tail。如果服务部署了好几台，就要分别登录到这几台机器上看，等到了分布式和微服务架构流行时代，一个从APP或H5发起的请求除了需要登陆服务器去排查日志，往往还会经过MQ和RPC调用远程到了别的主机继续处理，开发人员定位问题可能还需要根据TraceID或者业务唯一主键去跟踪服务的链路日志，基于传统SSH方式登陆主机查看日志的方式就像图中排查线路的工人一样困难，线上服务器几十上百之多，出了问题难以快速响应，因此需要高效、实时的日志存储和检索平台，ELK就提供这样一套解决方案。</p>
+<p>早在传统的单体应用时代，查看日志大都通过SSH客户端登服务器去看，使用较多的命令就是 less 或者 tail。如果服务部署了好几台，就要分别登录到这几台机器上看，等到了分布式和微服务架构流行时代，一个从APP或H5发起的请求除了需要登陆服务器去排查日志，往往还会经过MQ和RPC调用远程到了别的主机继续处理，开发人员定位问题可能还需要根据TraceID或者业务唯一主键去跟踪服务的链路日志，基于传统SSH方式登陆主机查看日志的方式就像图中排查线路的工人一样困难，线上服务器几十上百之多，出了问题难以快速响应，因此需要高效、实时的日志存储和检索平台，ELK就提供这样一套解决方案。<br><a id="more"></a></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/8926909-d4b9e6ed7cd7b781.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="找bug的感觉"></p>
 <h3 id="一、ELK架构的分类"><a href="#一、ELK架构的分类" class="headerlink" title="一、ELK架构的分类"></a>一、ELK架构的分类</h3><p>ELK是一套应用组件，由Elasticsearch、Logstash和Kibana三部分组件组成，简称ELK；它是一套开源免费、功能强大的日志分析管理系统。ELK可以将我们的系统日志、网站日志、应用系统日志等各种日志进行收集、过滤、清洗，然后进行集中存放并可用于实时检索、分析。</p>
 <hr>
